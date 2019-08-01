@@ -264,6 +264,7 @@
 \let\openbox\relax
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{mathtools} % for \Aboxed{}
 
 \usepackage{physics}  
             %\bra{} \ket{} \expval{}{}
