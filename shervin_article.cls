@@ -33,7 +33,7 @@
 \usepackage{silence}
 \WarningFilter{microtype}{Font}
 \usepackage[T1]{fontenc}
-\usepackage{newtxtext,newtxmath,courier}
+% \usepackage{newtxtext,newtxmath,courier}
 \usepackage{helvet}
 \usepackage{ifpdf}  % letterspacing with latex + dvipdf, so need the soul package. See http://tex.stackexchange.com/a/271714/226
 \ifpdf
