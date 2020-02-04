@@ -13,29 +13,37 @@
 %% PACKAGES - FORMATTING, LAYOUT, GRAPHICS, ETC
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LAYOUT
 \usepackage[letterpaper]{geometry}  % to set page geometry
 \usepackage{fancyhdr}               % custom headers/footers
 \usepackage{lastpage}               % Number of pages in the document
 \usepackage{array}                  % enables arrays
 
-%% FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FIGURES, GRAPHICS, TABLES
 \usepackage{float}                  % allows H option in \begin{figure}[H] to force here.
-
-%% GRAPHICS
 \usepackage{graphicx}               % enhanced graphics support 
-
-%% TABLES
-\usepackage[table]{xcolor}          %   
+\usepackage[table]{xcolor}          
 \usepackage{booktabs}
 
-%% FONT PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FONT, TEXT PACKAGES
 \usepackage{silence}
 \WarningFilter{microtype}{Font}
 \usepackage[T1]{fontenc}
-% \usepackage{newtxtext,newtxmath,courier}
-\usepackage{helvet}
-\usepackage{ifpdf}  % letterspacing with latex + dvipdf, so need the soul package. See http://tex.stackexchange.com/a/271714/226
+% \usepackage{newtxtext,newtxmath}
+\usepackage{courier}                % \texttt{} - latex typewriter set to Courier
+\usepackage{helvet}                 % latex sans serif set to Helvetica
+\usepackage{mathpazo}               % latex roman set to Palatino and mathpazo math
+\usepackage{verbatim}               % \begin{comment} %\begin{verbatim}
+\usepackage{fancyvrb}               % addon for verbatim?
+\usepackage{bm}                     %\bm{} bold command
+\usepackage{siunitx}                % SI units
+
+%% FONT SPACING ADJUSTMENTS
+\usepackage{ifpdf}  % letterspacing with latex + dvipdf, so need the soul package. 
+                    % See http://tex.stackexchange.com/a/271714/226
 \ifpdf
   \usepackage[tracking = true, letterspace = 16]{microtype}
 \else
@@ -46,18 +54,14 @@
   \sodef\lsbold{}{.02em}{.3em plus.08em minus.06em}{.3em plus.15em minus.83em}%
 \fi
 
-%% TEXT FORMATTING PACKAGES
-\usepackage{verbatim} % \begin{comment} %\begin{verbatim}
-\usepackage{fancyvrb} % addon for verbatim?
-\usepackage{bm}       %\bm{} bold command
-\usepackage{siunitx}  % SI units
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% BIBLIOGRAPHY
 \usepackage[square,sort&compress,comma,numbers,super]{natbib}
             % options: round, square, super, sort, sort&compress, compress, comma, numbers
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LINKS AND BOOKMARKS VIA HYPERREF
 % Most packages should load before hyperref but there are exceptions
 % https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
@@ -91,6 +95,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Page-layout commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -104,17 +109,22 @@
 
 \newcommand{\headerfont}{\normalfont\sffamily\fontsize{7}{9}\selectfont}
 
+
 % Title (headings are now sans serif; left-aligned)
 \ifpdf
   % microtype only works in pdflatex
   \newcommand\OEtitle[1]{%
-    {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright\textls{#1}\par\vskip.15in}
+    {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright{#1}\par\vskip.15in}
+    % {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright\textls{#1}\par\vskip.15in}
   }
 \else
   \newcommand\OEtitle[1]{%
-    {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright\lsbold{#1}\par\vskip.15in}
+    {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright{#1}\par\vskip.15in}
+    %     {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright\lsbold{#1}\par\vskip.15in}
+
   }
 \fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,31 +275,25 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{mathtools} % for \Aboxed{}
-
 \usepackage{physics}  
-            %\bra{} \ket{} \expval{}{}
-            %commutator{}{}     
-            %anticommutator{}{}
-            % % reminder on derivates
-            % \dv{Q}{t} = \dv{s}{t}  \quad
-            % \dv[n]{Q}{t} = \dv[n]{s}{t}  \quad
-            % \pdv{Q}{t} = \pdv{s}{t}  \quad
-            % \pdv[n]{Q}{t} = \pdv[n]{s}{t}  \quad
-            % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  \quad
+                                    %\bra{} \ket{} \expval{}{}
+                                    % \commutator{}{} \anticommutator{}{}
+                                    % \dv{Q}{t} = \dv{s}{t}  
+                                    % \dv[n]{Q}{t} = \dv[n]{s}{t}  
+                                    % \pdv{Q}{t} = \pdv{s}{t}
+                                    % \pdv[n]{Q}{t} = \pdv[n]{s}{t}  
+                                    % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  
 
-\usepackage[makeroom]{cancel}
-            %\cancel{} \bcancel{}
-            %\xcancel \cancelto{val}{}  
+\usepackage[makeroom]{cancel}       %\cancel{} \bcancel{} \xcancel \cancelto{val}{}  
 
-\usepackage{tensor}   
-            %\indices and \tensor command
-            %e.g. M\indices{^a_b^{cd}} gives M with raised a, lowered b, raised cd, in order.
+\usepackage{tensor}                 %\indices and \tensor command
+                                    %e.g. M\indices{^a_b^{cd}}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PACKAGES - CODE MARKUP LISTINGS
+%% PACKAGES - CODE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[ruled,vlined]{algorithm2e}    % for cool looking algorithm tables
@@ -389,9 +393,11 @@
 \newcommand{\T}{^{\textrm T}}               % transpose
 \newcommand{\cst}[1]{\mathsf{#1}}           % constant
 \newcommand{\indicator}[1]{\mathbf{1}\left\{#1\right\}} % indicator function
-\def\E{\mathbb{E}}    % expectation
-\def\P{\mathbb{P}}    % probability
-\def\R{\mathbb{R}}    % reals
+\def\E{\mathbb{E}}                          % expectation
+\def\P{\mathbb{P}}                          % probability
+\def\R{\mathbb{R}}                          % reals
+\newcommand{\hess}{\grad^2}                 % hessian. grad^2 (i.e. bold) instead of nabla^2
+\newcommand{\prox}{\mathrm{prox}}           % prox
 
 %% LONG DASHES GOOD FOR MATRIX OF VECTORS
 % \makeatletter
@@ -435,9 +441,9 @@
 \newcommand{\dash}{\rule[.5ex]{1.5em}{0.4pt}}
 %change vector command to bolded vectors
 %\renewcommand{\vec}[1]{\bm{#1}}
-% \let\oldhat\hat
+%\let\oldhat\hat
 %\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}
-% \renewcommand\arraystretch{1.2}
+%\renewcommand\arraystretch{1.2}
 \delimitershortfall-1sp
 
 %inline image character
