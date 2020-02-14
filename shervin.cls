@@ -1,10 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Shervin Sahba LaTeX article class and style sheet.
-%% Loosely based on OSA Journal style sheet shervin_article.cls
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{shervin_article}
+% LaTeX article class by Shervin Sahba
+% shervinsahba@gmail.com
 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{shervin}
 \ProcessOptions\relax
 \LoadClass{article}
 
@@ -20,12 +18,14 @@
 \usepackage{lastpage}               % Number of pages in the document
 \usepackage{array}                  % enables arrays
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FIGURES, GRAPHICS, TABLES
 \usepackage{float}                  % allows H option in \begin{figure}[H] to force here.
 \usepackage{graphicx}               % enhanced graphics support 
 \usepackage[table]{xcolor}          
 \usepackage{booktabs}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FONT, TEXT PACKAGES
@@ -54,6 +54,8 @@
   \sodef\lsbold{}{.02em}{.3em plus.08em minus.06em}{.3em plus.15em minus.83em}%
 \fi
 
+
+\delimitershortfall-1sp % allows decreasing size for nested parentheses in certain environment
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% BIBLIOGRAPHY
@@ -96,7 +98,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Page-layout commands
+%% PAGE-LAYOUT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pagestyle{empty}
@@ -128,7 +130,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Author information
+%% AUTHOT INFORMATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \definecolor{authorcolor}{RGB}{105,105,105}
 \colorlet{authorcolor}{black}
@@ -155,7 +157,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Environments
+%% ENVIRONMENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Abstract environments, with and without copyright info
@@ -163,25 +165,9 @@
 \newenvironment{abstract*}{\vskip1pc\noindent\textbf{\textsf{Abstract:}\space}}{}
 
 
-
-% BOXER - draws a box around whatever you put in it
-\newenvironment{boxer}
-    {\begin{center}
-    \begin{tabular}{|p{0.9\textwidth}|}
-    \hline
-    \smallskip
-    }
-    { 
-  \\\hline
-    \end{tabular} 
-    \end{center}
-    }
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Headers and footers setup
+%% HEADER AND FOOTER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pagestyle{fancy}          % Enables the custom headers/footers
@@ -264,217 +250,3 @@
                                      {\small\upshape\sffamily}}
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PACKAGES - MATH
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{amsmath}  
-\let\openbox\relax
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{mathtools} % for \Aboxed{}
-\usepackage{physics}  
-                                    %\bra{} \ket{} \expval{}{}
-                                    % \commutator{}{} \anticommutator{}{}
-                                    % \dv{Q}{t} = \dv{s}{t}  
-                                    % \dv[n]{Q}{t} = \dv[n]{s}{t}  
-                                    % \pdv{Q}{t} = \pdv{s}{t}
-                                    % \pdv[n]{Q}{t} = \pdv[n]{s}{t}  
-                                    % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  
-
-\usepackage[makeroom]{cancel}       %\cancel{} \bcancel{} \xcancel \cancelto{val}{}  
-
-\usepackage{tensor}                 %\indices and \tensor command
-                                    %e.g. M\indices{^a_b^{cd}}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PACKAGES - CODE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage[ruled,vlined]{algorithm2e}    % for cool looking algorithm tables
-
-\usepackage{color}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\usepackage{listings}              %  code listing: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
-% Basic shared code listing settings
-\lstset{ 
-  basicstyle=\ttfamily             % the size/style of the fonts that are used for the code
-    \lst@ifdisplaystyle\footnotesize\fi,  %switch to footnotesize font for display code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  stringstyle=\color{mauve},       % string literal style
-  commentstyle=\color{dkgreen},    % comment style
-  keywordstyle=\color{blue},       % keyword style
-  morekeywords={*,...},            % if you want to add more keywords to the set
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  firstnumber=1,                   % start line enumeration with line 1000
-  frame=L,                         % adds a frame around the code, L=double left bar
-  framesep=\fboxsep,
-  framerule=\fboxrule,
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  columns=flexible,
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=1.5em,                 % how far the line-numbers are from the code
-  numberstyle=\tiny\color{gray},   % the style that is used for the line-numbers
-  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  tabsize=2,                       % sets default tabsize to 2 spaces
-  % title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
-  xleftmargin=\dimexpr\fboxsep+\fboxrule\relax,
-  xrightmargin=\dimexpr\fboxsep+\fboxrule\relax,
-  backgroundcolor=\color{cyan!3}   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
-}
-
-
-\newcommand{\inlinecode}[1]{\colorbox{gray!10}{\lstinline{#1}}}
-
-
-% Python Style
-\lstdefinestyle{python}{
-    language={Python},
-    % basicstyle=\small\tt,
-    commentstyle=\color[rgb]{0.13,0.54,0.13},
-    morekeywords={
-        Console,  
-        WriteLine,
-        int,
-    },
-}
-\lstnewenvironment{python}
-{\lstset{style=python}}
-{}
-
-
-% Matlab Style
-\lstdefinestyle{matlab}{
-    language={matlab},
-    commentstyle=\color[rgb]{0.13,0.54,0.13},
-    morekeywords={
-        Console,  
-        WriteLine,
-        int,
-    },
-}
-\lstnewenvironment{matlab}
-{\lstset{style=matlab}}
-{}
-
-
-% % MATLAB style alternate, use a different package
-% \usepackage[numbered,framed]{matlab-prettifier} % https://tex.stackexchange.com/questions/75116/what-can-i-use-to-typeset-matlab-code-in-my-document
-% \usepackage{filecontents}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% MACROS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% MATH SYMBOLS AND OBJECTS
-
-\newcommand{\twonorm}[1]{\norm{#1}_2^2}     % twonorm squared
-\renewcommand{\vec}[1]{\boldsymbol{#1}}     % vector
-\newcommand{\uvec}[1]{\vec{\hat{#1}}}       % unit vector
-\newcommand{\mat}[1]{\boldsymbol{#1}}       % matrix
-\newcommand{\T}{^{\textrm T}}               % transpose
-\newcommand{\cst}[1]{\mathsf{#1}}           % constant
-\newcommand{\indicator}[1]{\mathbf{1}\left\{#1\right\}} % indicator function
-\def\E{\mathbb{E}}                          % expectation
-\def\P{\mathbb{P}}                          % probability
-\def\R{\mathbb{R}}                          % reals
-\newcommand{\hess}{\grad^2}                 % hessian. grad^2 (i.e. bold) instead of nabla^2
-\newcommand{\prox}{\mathrm{prox}}           % prox
-
-%% LONG DASHES GOOD FOR MATRIX OF VECTORS
-% \makeatletter
-% \newcommand{\longdash}[1][2em]{%
-%   \makebox[#1]{$\m@th\smash-\mkern-7mu\cleaders\hbox{$\mkern-2mu\smash-\mkern-2mu$}\hfill\mkern-7mu\smash-$}}
-% \makeatother
-% \newcommand{\omitskip}{\kern-\arraycolsep}
-% \newcommand{\llongdash}[1][2em]{\longdash[#1]\omitskip}
-% \newcommand{\rlongdash}[1][2em]{\omitskip\longdash[#1]}
-
-%% QUANTUM SYMBOLS
-
-\newcommand{\bk}[3][]{\bra{#2}#1\ket{#3}}       % braket
-\newcommand{\kb}[2]{\ket{#1}\bra{#2}}           % ketbra
-\newcommand{\com}[2]{\commutator{#1}{#2}}       % commutator
-\newcommand{\acom}[2]{\anticommutator{#1}{#2}}  % anticommutator
-\newcommand{\exv}[1]{\expval{#1}}               % expectation value (physics)
-
-
-%% ABBREVIATIONS FOR MATH COMMANDS
-
-\newcommand{\mb}[1]{\mathbf{#1}}  % quick math bold
-\newcommand{\mc}[1]{\mathcal{#1}} % quick math caligraphic
-\newcommand{\lp}{\left}           % quick \left
-\newcommand{\rp}{\right}          % quick \right
-\newcommand{\idx}{\indices}       % quick \indices
-
-
-%% MISC
-
-\newcommand{\todo}[1]{\text{\color{red}{TODO #1}}}            % RED TODO FLAG
-\newcommand{\tagg}{\stepcounter{equation}\tag{\theequation}}  % add a Eq. (tag)
-
-
-
-%% MORE MACROS... DO I NEED THESE MACROS?
-
-\newcommand{\trix}[5][p]{\begin{#1matrix} #2 & #3 \\ #4 & #5\end{#1matrix}} %2x2 matrices
-\newcommand{\trixx}[9]{\begin{pmatrix} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9\end{pmatrix}} % 3x3 matrices
-\newcommand{\diag}[1]{\operatorname{diag}\lp(#1\rp)}
-\newcommand{\dash}{\rule[.5ex]{1.5em}{0.4pt}}
-%change vector command to bolded vectors
-%\renewcommand{\vec}[1]{\bm{#1}}
-%\let\oldhat\hat
-%\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}
-%\renewcommand\arraystretch{1.2}
-\delimitershortfall-1sp
-
-%inline image character
-% inline image!
-\newcommand{\mychar}[1]{%
-  \begingroup\normalfont
-  \includegraphics[height=\fontcharht\font`\B]{#1}%
-  \endgroup
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% AUTOMATIC LEFT AND RIGHT FOR PARENTHESIS
-% https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \usepackage{mleftright}  % \mleft and \mright fix some spacing issues
-% can change \left to \mleft below and so on
-
-\makeatletter
-\def\resetMathstrut@{%
-  \setbox\z@\hbox{%
-    \mathchardef\@tempa\mathcode`\[\relax
-    \def\@tempb##1"##2##3{\the\textfont"##3\char"}%
-    \expandafter\@tempb\meaning\@tempa \relax
-  }%
-  \ht\Mathstrutbox@\ht\z@ \dp\Mathstrutbox@\dp\z@}
-\makeatother
-\begingroup
-  \catcode`(\active \xdef({\left\string(}    % 
-  \catcode`)\active \xdef){\right\string)}   % 
-\endgroup
-\mathcode`(="8000 \mathcode`)="8000

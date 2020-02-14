@@ -1,12 +1,15 @@
-% Shervin's LaTeX template
-\documentclass{shervin_article} % load shervin_article.cls style sheet
+% LaTeX template by Shervin Sahba
+% shervinsahba@gmail.com
+
+\documentclass{shervin} % load .cls
+\usepackage{shervin}	% load .sty
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% HEADER CONTROLS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\articletype{Thing}
-\journalname{Thang}
+\articletype{Article Type}
+\journalname{Journal Name}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,7 +43,11 @@ Insert abstract\footnote{Message}
 
 \section{Introduction and Overview}
 
-Stuff\cite{J.NathanKutz130}
+\begin{boxed}{(((x)))}\end{boxed}
+% \begin{align}
+% \boxer{(((x)))}
+% \end{align}
+
 
 \subsection{Overview}
 
@@ -61,11 +68,11 @@ Stuff\cite{J.NathanKutz130}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% REFERENCES
+%% REFERENCES - use \citep and \citet not \cite with natbib!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\medskip
-\bibliographystyle{plainnat}
-\bibliography{mybib} 
+% \medskip
+% \bibliographystyle{abbrvnat}
+% \bibliography{refs} 
  
  
 
@@ -75,8 +82,8 @@ Stuff\cite{J.NathanKutz130}
 %% APPENDICES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\clearpage
-\section{Appendix A} \label{sec:AppendixA}
+% \clearpage
+% \section{Appendix A} \label{sec:AppendixA}
 
 
 
