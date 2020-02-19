@@ -1,9 +1,17 @@
 % LaTeX style sheet by Shervin Sahba
 % shervinsahba@gmail.com
 
+% CONTENTS:
+% [[1]] ENVIRONMENTS
+% [[2]] PACKAGES - CODE
+% [[3]] PACKAGES - SCIENTIFIC
+% [[4]] MACROS
+% [[5]] AUTOMATIC LEFT AND RIGHT PARENTHESIS
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ENVIRONMENTS
+%% [[1]] ENVIRONMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % boxer - draws a box around whatever you put in it
@@ -15,7 +23,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PACKAGES - CODE
+%% [[2]] PACKAGES - CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[ruled,vlined]{algorithm2e}    % for cool looking algorithm tables
@@ -103,7 +111,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PACKAGES - MATH AND PHYSICS
+%% [[3]] PACKAGES - SCIENTIFIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{amsmath}  
@@ -130,30 +138,27 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% MACROS
+%% [[4]] MACROS \def will clobber commands, \newcommand will not! %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% SHORTHAND MATH COMMANDS
-
-\newcommand{\mb}[1]{\mathbf{#1}}  % quick math bold
-\newcommand{\mc}[1]{\mathcal{#1}} % quick math caligraphic
-\newcommand{\lp}{\left}           % quick \left
-\newcommand{\rp}{\right}          % quick \right
-\newcommand{\idx}{\indices}       % quick \indices
-
 
 %% MATH SYMBOLS AND OBJECTS
 
-\newcommand{\twonorm}[1]{\norm{#1}_2^2}     % twonorm squared
-\renewcommand{\vec}[1]{\boldsymbol{#1}}     % vector
-\newcommand{\uvec}[1]{\vec{\hat{#1}}}       % unit vector
-\newcommand{\mat}[1]{\boldsymbol{#1}}       % matrix
+\newcommand{\lp}{\left}                     % \left{}
+\newcommand{\rp}{\right}                    % \right{}
+\newcommand{\idx}{\indices}                 % \indices{}
+\newcommand{\mbf}[1]{\mathbf{#1}}           % \mathbf{}
+\newcommand{\mbb}[1]{\mathbb{#1}}           % \mathbb{}
+\newcommand{\mc}[1]{\mathcal{#1}}           % \mathcal{}
+\def\R{\mathbb{R}}                          % reals
+\renewcommand{\vec}[1]{\boldsymbol{#1}}     % vector, as bold symbol
+\newcommand{\uvec}[1]{\vec{\hat{#1}}}       % unit vector,  as bold with hat
+\newcommand{\mat}[1]{\boldsymbol{#1}}       % matrix, as bold symbol
 \newcommand{\T}{^{\textrm T}}               % transpose
+\newcommand{\I}{^{-1}}                      % inverse
 \newcommand{\cst}[1]{\mathsf{#1}}           % constant
 \newcommand{\indicator}[1]{\mathbf{1}_{#1}} % indicator function
 \def\E{\mathbb{E}}                          % expectation
 \def\P{\mathbb{P}}                          % probability
-\def\R{\mathbb{R}}                          % reals
 \newcommand{\hess}{\grad^2}                 % hessian (bold grad^2 instead of nabla^2)
 \newcommand{\prox}{\mathrm{prox}}           % prox
 \newcommand{\epi}{\mathrm{epi}}             % epi
@@ -173,22 +178,17 @@
 
 \newcommand{\todo}[1]{\text{\color{red}{TODO #1}}}            % RED TODO FLAG
 \newcommand{\tagg}{\stepcounter{equation}\tag{\theequation}}  % add a Eq. (tag)
-
-
-%inline image character
-% inline image!
-\newcommand{\mychar}[1]{%
+\newcommand{\mychar}[1]{    % inline image, size of a character                              
   \begingroup\normalfont
-  \includegraphics[height=\fontcharht\font`\B]{#1}%
-  \endgroup
-}
+  \includegraphics[height=\fontcharht\font`\B]{#1}
+  \endgroup}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% AUTOMATIC LEFT AND RIGHT FOR PARENTHESIS
+% [[5]] AUTOMATIC LEFT AND RIGHT PARENTHESIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % \usepackage{mleftright}  % \mleft and \mright fix some spacing issues
@@ -208,6 +208,3 @@
   \catcode`)\active \xdef){\right\string)}   % 
 \endgroup
 \mathcode`(="8000 \mathcode`)="8000
-
-
-
