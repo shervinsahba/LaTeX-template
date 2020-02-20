@@ -12,6 +12,8 @@
 
 *.sublime-project		# sublime text
 *.sublime-workspace		# sublime text
+**/*.sublime-project
+**/*.sublime-workspace
 **/.ipynb_checkpoints/		# jupyter notebook checkpoints
 **/.idea/					# pycharm
 **/__pycache__/				# pycharm
