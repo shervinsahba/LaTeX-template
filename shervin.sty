@@ -165,6 +165,7 @@
 \newcommand{\epi}{\mathrm{epi}}             % epi
 \newcommand{\sgn}{\mathrm{sgn}}             % sign function
 \newcommand{\proj}{\mathrm{proj}}           % projection
+\newcommand{\innerprod}[2]{\langle #1, #2 \rangle} % inner product
 
 %% QUANTUM SYMBOLS
 
@@ -211,10 +212,31 @@
 \mathcode`(="8000 \mathcode`)="8000
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % [[6]] TCOLORBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\usepackage{varwidth}
+\usepackage{lipsum}
+\newtcolorbox{mybox}[2][]{enhanced,
+  skin=enhancedlast jigsaw,
+  attach boxed title to top left={xshift=-4mm,yshift=-0.5mm},
+  fonttitle=\bfseries\sffamily,
+  varwidth boxed title=0.7\linewidth, 
+  colbacktitle=blue!45!white,
+  colframe=red!50!black, 
+  interior style={top color=blue!10!white,bottom color=red!10!white}, 
+  boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt}, 
+  underlay boxed title={
+    \fill[blue!45!white] (title.north west) 
+    -- (title.north east)
+    -- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
+    -- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm)-- (title.south west) -- cycle;
+    \fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north west)-- +(-0.4,0) -- +(0,-0.3) -- cycle;
+    \fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north east)-- +(0,-0.3) -- +(0.4,0) -- cycle;  },
+  title={#2},#1}
+

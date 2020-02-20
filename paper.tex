@@ -30,7 +30,7 @@
 % \homepage{shervinsahba.com}
 
 \begin{abstract*}
-Insert abstract\footnote{Footnote!}
+This describes the paper. It is abstract.\footnote{Footnote!}
 \end{abstract*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,12 +40,22 @@ Insert abstract\footnote{Footnote!}
 
 \section{Introduction and Overview} \label{sec: Introduction}
 
+\begin{tcolorbox}[title=Cool Box, fonttitle=\bfseries, titlebox=visible, sidebyside, enhanced, frame style={left color=red!75!black,right color=blue!75!black}]
 \begin{align}
-\boxed{(((x)))}
+&\boxed{(((x)))} \\
+c&= \innerprod{a}{b}
 \end{align}
+
+\tcblower
+\lipsum[1]
+\end{tcolorbox}
 
 
 \subsection{Overview} \label{sec: Overview}
+
+\begin{mybox}{Fancy box}
+\lipsum[2]
+\end{mybox}
 
 \bigskip
 \section{Theoretical Background} \label{sec:Background}
