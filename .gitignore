@@ -9,7 +9,8 @@
 
 
 # Code Support
-
+*.sublime-project
+*.sublime-workspace
 **/*.sublime-project		# sublime text
 **/*.sublime-workspace		# sublime text
 **/.ipynb_checkpoints/		# jupyter notebook checkpoints
