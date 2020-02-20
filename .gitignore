@@ -1,0 +1,40 @@
+## GIT IGNORE
+
+# Images
+
+**.png
+**.jpg
+**.gif
+**.bmp
+
+
+# Code Support
+
+**/*.sublime-project		# sublime text
+**/*.sublime-workspace		# sublime text
+**/.ipynb_checkpoints/		# jupyter notebook checkpoints
+**/.idea/					# pycharm
+**/__pycache__/				# pycharm
+**/*-env  					# ignore local conda-env
+
+
+# Scratch work
+
+**/scratch/
+**/scratch.py
+**/scratch.ipynb
+**/scratch.jl
+
+
+# LaTeX
+
+**.aux
+**.bbl
+**.blg
+**.fdb_latexmk
+**.synctex.gz
+**.fls
+**/latex*/*.log
+**/latex*/*.out 
+**/latex*/*.pdf				# may want to push a GitHub Release for final pdf 
+**/latex*/.Rhistory
