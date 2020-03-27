@@ -3,11 +3,12 @@
 
 % CONTENTS:
 % [[1]] ENVIRONMENTS
-% [[2]] PACKAGES - CODE
-% [[3]] PACKAGES - SCIENTIFIC
-% [[4]] MACROS
-% [[5]] AUTOMATIC LEFT AND RIGHT PARENTHESIS
-% [[6]] TCOLORBOX
+% [[2]] PACKAGES - FONT & FIGURES
+% [[3]] PACKAGES - CODE
+% [[4]] PACKAGES - SCIENTIFIC
+% [[5]] MACROS
+% [[6]] AUTOMATIC LEFT AND RIGHT PARENTHESIS
+% [[7]] TCOLORBOX
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -21,10 +22,27 @@
     {\\\\\hline\end{tabular}\end{center}}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[2]] PACKAGES - FONT & FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{verbatim}               % \begin{comment} %\begin{verbatim}
+\usepackage{fancyvrb}               % addon for verbatim?
+\usepackage{bm}                     %\bm{} bold command
+\usepackage{siunitx}                % SI units
+
+
+%% FIGURES, GRAPHICS, TABLES
+\usepackage{float}                  % allows H option in \begin{figure}[H] to force here.
+\usepackage{graphicx}               % enhanced graphics support 
+\usepackage[table]{xcolor}          
+\usepackage{booktabs}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[2]] PACKAGES - CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[3]] PACKAGES - CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[ruled,vlined]{algorithm2e}    % for cool looking algorithm tables
@@ -112,24 +130,25 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[3]] PACKAGES - SCIENTIFIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[4]] PACKAGES - SCIENTIFIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{amsmath}  
 \let\openbox\relax
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{mathtools} % for \Aboxed{}
+% \usepackage{amsfonts}
+\usepackage{mathtools}              % \Aboxed{}
 \usepackage{physics}  
-                                    %\bra{} \ket{} \expval{}{}
-                                    % \commutator{}{} \anticommutator{}{}
-                                    % \dv{Q}{t} = \dv{s}{t}  
-                                    % \dv[n]{Q}{t} = \dv[n]{s}{t}  
-                                    % \pdv{Q}{t} = \pdv{s}{t}
-                                    % \pdv[n]{Q}{t} = \pdv[n]{s}{t}  
-                                    % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  
+              % \bra{} \ket{} \expval{}{}
+              % \commutator{}{} \anticommutator{}{}
+              % \dv{Q}{t} = \dv{s}{t}  
+              % \dv[n]{Q}{t} = \dv[n]{s}{t}  
+              % \pdv{Q}{t} = \pdv{s}{t}
+              % \pdv[n]{Q}{t} = \pdv[n]{s}{t}  
+              % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  
 
-\usepackage[makeroom]{cancel}       %\cancel{} \bcancel{} \xcancel \cancelto{val}{}  
+\usepackage[makeroom]{cancel}       % \cancel{} \bcancel{} \xcancel \cancelto{val}{}  
 
 \usepackage{tensor}                 %\indices and \tensor command
                                     %e.g. M\indices{^a_b^{cd}}
@@ -139,8 +158,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[4]] MACROS \def will clobber commands, \newcommand will not! %%%%%%%%%%%%%%
+%% [[5]] MACROS \def will clobber commands, \newcommand will not! %%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% GREEK SYMBOLS
+\newcommand{\eps}{\epsilon}                 % \epsilon
+
 
 %% MATH SYMBOLS AND OBJECTS
 
@@ -166,6 +189,8 @@
 \newcommand{\sgn}{\mathrm{sgn}}             % sign function
 \newcommand{\proj}{\mathrm{proj}}           % projection
 \newcommand{\innerprod}[2]{\langle #1, #2 \rangle} % inner product
+\newcommand{\Sum}{\displaystyle\sum}        % \sum in displaystyle
+
 
 %% QUANTUM SYMBOLS
 
@@ -178,17 +203,31 @@
 
 %% MISC
 
-\newcommand{\todo}[1]{\text{\color{red}{TODO #1}}}            % RED TODO FLAG
+\newcommand{\TODO}[1]{\text{\color{red}{TODO #1}}}            % RED TODO FLAG
 \newcommand{\tagg}{\stepcounter{equation}\tag{\theequation}}  % add a Eq. (tag)
 \newcommand{\mychar}[1]{    % inline image, size of a character                              
   \begingroup\normalfont
   \includegraphics[height=\fontcharht\font`\B]{#1}
   \endgroup}
 
+% decorative horizontal breaks, centered with 8cm or 16cm length
+\newcommand{\sepa}{\begin{center}\rule{8cm}{0.3pt}\end{center}\vspace{0.0cm}}
+\newcommand{\sepaa}{\begin{center}\rule{16cm}{0.3pt}\end{center}\vspace{-0.2cm}}
+
+
+%% REFERENCES
+
+\newcommand{\eqn}[1]{Eqn.(#1)}
+\newcommand{\fig}[1]{Fig.(#1)}
+\newcommand{\Eqn}[1]{Equation (#1)}
+\newcommand{\Fig}[1]{Figure (#1)}
+
+%numbers equations in the align* environment!
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[5]] AUTOMATIC LEFT AND RIGHT PARENTHESIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[6]] AUTOMATIC LEFT AND RIGHT PARENTHESIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
 
@@ -214,7 +253,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[6]] TCOLORBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[7]] TCOLORBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{tcolorbox}

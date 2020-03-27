@@ -38,13 +38,8 @@
 \usepackage{lastpage}               % Number of pages in the document
 \usepackage{array}                  % enables arrays
 
-%% FIGURES, GRAPHICS, TABLES
-\usepackage{float}                  % allows H option in \begin{figure}[H] to force here.
-\usepackage{graphicx}               % enhanced graphics support 
-\usepackage[table]{xcolor}          
-\usepackage{booktabs}
-
 %% FONT, TEXT PACKAGES
+\usepackage[table]{xcolor}          
 \usepackage{silence}
 \WarningFilter{microtype}{Font}
 \usepackage[T1]{fontenc}
@@ -52,10 +47,7 @@
 \usepackage{courier}                % \texttt{} - latex typewriter set to Courier
 \usepackage{helvet}                 % latex sans serif set to Helvetica
 \usepackage{mathpazo}               % latex roman set to Palatino and mathpazo math
-\usepackage{verbatim}               % \begin{comment} %\begin{verbatim}
-\usepackage{fancyvrb}               % addon for verbatim?
-\usepackage{bm}                     %\bm{} bold command
-\usepackage{siunitx}                % SI units
+
 
 %% FONT SPACING ADJUSTMENTS
 \usepackage{ifpdf}  % letterspacing with latex + dvipdf, so need the soul package. 
