@@ -9,7 +9,7 @@
 % [[5]] MACROS
 % [[6]] AUTOMATIC LEFT AND RIGHT PARENTHESIS
 % [[7]] TCOLORBOX
-
+% [[8]] HYPERREF LINKS & TOC
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,6 +27,8 @@
 %% [[2]] PACKAGES - FONT & FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage[table]{xcolor}          
+
 \usepackage{verbatim}               % \begin{comment} %\begin{verbatim}
 \usepackage{fancyvrb}               % addon for verbatim?
 \usepackage{bm}                     %\bm{} bold command
@@ -36,7 +38,7 @@
 %% FIGURES, GRAPHICS, TABLES
 \usepackage{float}                  % allows H option in \begin{figure}[H] to force here.
 \usepackage{graphicx}               % enhanced graphics support 
-\usepackage[table]{xcolor}          
+\usepackage{array}                  % enables arrays
 \usepackage{booktabs}
 
 
@@ -279,3 +281,39 @@
     \fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north east)-- +(0,-0.3) -- +(0.4,0) -- cycle;  },
   title={#2},#1}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[8]] HYPERREF LINKS & TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% LINKS AND BOOKMARKS VIA HYPERREF
+% Most packages should load before hyperref but there are exceptions
+% https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
+\definecolor{urlblue}{RGB}{46,46,177}
+\usepackage[]{hyperref}
+\hypersetup{
+    %pdftitle={Your title here},
+    pdfauthor={Shervin Sahba},
+    %pdfsubject={Your subject here},
+    %pdfkeywords={keyword1, keyword2},
+    bookmarksnumbered=true,     
+    bookmarksopen=true,         % show bookmarks with subtrees expanded
+    bookmarksopenlevel=1,       % ... up to level 1
+    colorlinks=true,            % use colored links
+    urlcolor=urlblue,           % color of URL
+    linkcolor=blue,              % color of links
+    citecolor=blue,             % color of citations
+    breaklinks=true,            % allow links to break over multiple lines
+    pdfstartview=Fit,           % set startup pdf page view
+    pdfpagemode=UseOutlines,    % this is the option you were lookin for
+    %pdfpagelayout=TwoPageRight
+}
+% \usepackage[colorlinks=true,      % Color Links
+%             urlcolor=urlblue,
+%             linkcolor=black,
+%             citecolor=black,
+%             breaklinks=true,      
+%             bookmarks=true      % create pdf bookmarks
+%             ]{hyperref} 
+% \usepackage{hypcap}             % bookmarks should anchor at image not caption

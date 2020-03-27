@@ -36,7 +36,6 @@
 \usepackage[letterpaper]{geometry}  % to set page geometry
 \usepackage{fancyhdr}               % custom headers/footers
 \usepackage{lastpage}               % Number of pages in the document
-\usepackage{array}                  % enables arrays
 
 %% FONT, TEXT PACKAGES
 \usepackage[table]{xcolor}          
@@ -68,36 +67,7 @@
 \usepackage[square,sort&compress,comma,numbers,super]{natbib}
             % options: round, square, super, sort, sort&compress, compress, comma, numbers
 
-%% LINKS AND BOOKMARKS VIA HYPERREF
-% Most packages should load before hyperref but there are exceptions
-% https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
-\definecolor{urlblue}{RGB}{46,46,177}
-\usepackage[]{hyperref}
-\hypersetup{
-    %pdftitle={Your title here},
-    pdfauthor={Shervin Sahba},
-    %pdfsubject={Your subject here},
-    %pdfkeywords={keyword1, keyword2},
-    bookmarksnumbered=true,     
-    bookmarksopen=true,         % show bookmarks with subtrees expanded
-    bookmarksopenlevel=1,       % ... up to level 1
-    colorlinks=true,            % use colored links
-    urlcolor=urlblue,           % color of URL
-    linkcolor=blue,              % color of links
-    citecolor=blue,             % color of citations
-    breaklinks=true,            % allow links to break over multiple lines
-    pdfstartview=Fit,           % set startup pdf page view
-    pdfpagemode=UseOutlines,    % this is the option you were lookin for
-    %pdfpagelayout=TwoPageRight
-}
-% \usepackage[colorlinks=true,      % Color Links
-%             urlcolor=urlblue,
-%             linkcolor=black,
-%             citecolor=black,
-%             breaklinks=true,      
-%             bookmarks=true      % create pdf bookmarks
-%             ]{hyperref} 
-% \usepackage{hypcap}             % bookmarks should anchor at image not caption
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,6 +106,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% [[3]] AUTHOR INFO CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \definecolor{authorcolor}{RGB}{105,105,105}
 \colorlet{authorcolor}{black}
 \newcommand{\@authorcolor}{black}
@@ -189,6 +160,7 @@
       \cellcolor{black}\textcolor{white}{\@articletype} & \@journalname\hspace{21pt}\thepage \\
       \hline
     \end{tabular*}}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
