@@ -10,7 +10,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass{shervin} % load .cls
-\usepackage{shervin}	% load .sty
+
+\usepackage{shervin}  % shervin.sty
+\allowdisplaybreaks   % allows pagebreaks with align env
+\toggleautobrackets   % automate ( ) -> \left( \right)
+                      % manually override a
+                      % particular bracket by specifying
+                      % \left \right \bigl etc...
+
 
 \articletype{\today}	% header control, top left
 \journalname{Untitled}	% header control, top right
@@ -30,7 +37,7 @@
 % \homepage{shervinsahba.com}
 
 \begin{abstract*}
-This describes the paper. It is abstract.\footnote{Footnote!}
+This describes the paper. (It is an abstract abstract.) \footnote{Footnote!}
 \end{abstract*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

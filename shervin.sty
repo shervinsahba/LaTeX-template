@@ -27,8 +27,7 @@
 %% [[2]] PACKAGES - FONT & FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[table]{xcolor}          
-
+\@ifpackageloaded{xcolor}{}{\usepackage[table]{xcolor}}
 \usepackage{verbatim}               % \begin{comment} %\begin{verbatim}
 \usepackage{fancyvrb}               % addon for verbatim?
 \usepackage{bm}                     %\bm{} bold command
@@ -37,6 +36,10 @@
 \usepackage{enumitem}               % gives \begin{enumerate} an optional style param
                                     % e.g. \begin{enumerate}[label=(\alph*)]
                                     % \alph \Alph \roman ...
+
+\usepackage{lipsum}                 % for lorem ipsum testing
+% \usepackage{blindtext}              % for lorem ipsum testing
+
 
 %% FIGURES, GRAPHICS, TABLES
 \usepackage{float}                  % allows H option in \begin{figure}[H] to force here.
@@ -50,8 +53,17 @@
 %% [[3]] PACKAGES - CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[ruled,vlined]{algorithm2e}    % for cool looking algorithm tables
+\usepackage{etoolbox}  % for better ifthen conditions with
+                       % \newtoggle{flag} <-- declares flag, sets false
+                       % \settoggle{flag}{true|false}
+                       % \toggletrue{flag} \togglefalse{flag}
+                       % \iftoggle{flag}{do true}{do false}
 
+
+%note to self: revisit which algo package you want
+% https://tex.stackexchange.com/questions/229355/algorithm-algorithmic-algorithmicx-algorithm2e-algpseudocode-confused
+\@ifpackageloaded{algorithm}{}
+    {\usepackage[ruled,vlined]{algorithm2e}}
 \usepackage{color}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -153,6 +165,7 @@
               % \pdv{Q}{t} = \pdv{s}{t}
               % \pdv[n]{Q}{t} = \pdv[n]{s}{t}  
               % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  
+              % \eval{f(x)}_a^b
 
 \usepackage[makeroom]{cancel}       % \cancel{} \bcancel{} \xcancel \cancelto{val}{}  
 
@@ -173,6 +186,10 @@
 
 %% MATH SYMBOLS AND OBJECTS
 
+%differential d
+\renewcommand\d{\mathop{}\!\mathrm{d}}
+% \renewcommand\d[1]{\mathop{}\,\mathrm{d}#1\@ifnextchar\d{\mspace{-6mu}}{}}
+
 \newcommand{\lp}{\left}                     % \left{}
 \newcommand{\rp}{\right}                    % \right{}
 \newcommand{\idx}{\indices}                 % \indices{}
@@ -184,7 +201,7 @@
 \newcommand{\uvec}[1]{\vec{\hat{#1}}}       % unit vector, as bold with hat
 \newcommand{\mat}[1]{\boldsymbol{#1}}       % matrix, as bold symbol
 \newcommand{\T}{^{\textrm T}}               % transpose
-\newcommand{\I}{^{-1}}                      % inverse
+%\newcommand{\I}{^{-1}}                      % inverse
 \newcommand{\cst}[1]{\mathsf{#1}}           % constant
 \newcommand{\indicator}[1]{\mathbf{1}_{#1}} % indicator function
 \def\E{\mathbb{E}}                          % expectation
@@ -196,6 +213,11 @@
 \newcommand{\proj}{\mathrm{proj}}           % projection
 \newcommand{\innerprod}[2]{\langle #1, #2 \rangle} % inner product
 \newcommand{\Sum}{\displaystyle\sum}        % \sum in displaystyle
+\DeclareMathOperator{\am}{am}               % Jacobi Elliptic Am
+\DeclareMathOperator{\dn}{dn}               % Jacobi Elliptic Dn
+\DeclareMathOperator{\cn}{cn}               % Jacobi Elliptic Cn
+\DeclareMathOperator{\sn}{sn}               % Jacobi Elliptic Sn
+
 
 
 %% QUANTUM SYMBOLS
@@ -205,6 +227,8 @@
 % \newcommand{\com}[2]{\commutator{#1}{#2}}       % commutator
 % \newcommand{\acom}[2]{\anticommutator{#1}{#2}}  % anticommutator
 % \newcommand{\exv}[1]{\expval{#1}}               % expectation value (physics)
+
+
 
 
 %% MISC
@@ -236,26 +260,34 @@
 % [[6]] AUTOMATIC LEFT AND RIGHT PARENTHESIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
+% maybe change to \mleft and \mright from  
+% \usepackage{mleftright} to fix some spacing issues or use \! etc...
 
+% activate with \toggleautobrackets at beginning of .tex
 
-% \usepackage{mleftright}  % \mleft and \mright fix some spacing issues
-% can change \left to \mleft below and so on
-
-\makeatletter
-\def\resetMathstrut@{%
-  \setbox\z@\hbox{%
-    \mathchardef\@tempa\mathcode`\[\relax
-    \def\@tempb##1"##2##3{\the\textfont"##3\char"}%
-    \expandafter\@tempb\meaning\@tempa \relax
-  }%
-  \ht\Mathstrutbox@\ht\z@ \dp\Mathstrutbox@\dp\z@}
-\makeatother
+\newcommand{\toggleautobrackets}{
+  \newtoggle{autobrackets}
+  \toggletrue{autobrackets}
+  \iftoggle{autobrackets}{
+    \makeatletter
+    \def\resetMathstrut@{
+      \setbox\z@\hbox{
+        \mathchardef\@tempa\mathcode`\[\relax
+        \def\@tempb####1"####2####3{\the\textfont"####3\char"}
+        \expandafter\@tempb\meaning\@tempa \relax
+      }
+      \ht\Mathstrutbox@\ht\z@ 
+      \dp\Mathstrutbox@\dp\z@
+    }
+    \makeatother
+    \mathcode`(="8000 
+    \mathcode`)="8000
+  }{}
+}
 \begingroup
-  \catcode`(\active \xdef({\left\string(}    % 
-  \catcode`)\active \xdef){\right\string)}   % 
+  \catcode`(\active \xdef({\left\string(}% 
+  \catcode`)\active \xdef){\right\string)}% 
 \endgroup
-\mathcode`(="8000 \mathcode`)="8000
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
