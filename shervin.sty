@@ -6,59 +6,62 @@
 % [[2]] PACKAGES - FONT & FIGURES
 % [[3]] PACKAGES - CODE
 % [[4]] PACKAGES - SCIENTIFIC
-% [[5]] MACROS
-% [[6]] AUTOMATIC LEFT AND RIGHT PARENTHESIS
+% [[5]] AUTOMATIC PARENTHESIS & BRACKETS
 % [[7]] TCOLORBOX
 % [[8]] HYPERREF LINKS & TOC
+% [[M]] MACROS
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[1]] ENVIRONMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[1]] ENVIRONMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % boxer - draws a box around whatever you put in it
 \newenvironment{boxer}
     {\begin{center}\begin{tabular}{|p{0.9\textwidth}|}\hline\\}
     {\\\\\hline\end{tabular}\end{center}}
 
+% subalign - subequations and align
+\newenvironment{subalign}{\subequations\align}{\endalign\endsubequations}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[2]] PACKAGES - FONT & FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[2]] PACKAGES - FONT & FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \@ifpackageloaded{xcolor}{}{\usepackage[table]{xcolor}}
-\usepackage{verbatim}               % \begin{comment} %\begin{verbatim}
-\usepackage{fancyvrb}               % addon for verbatim?
-\usepackage{bm}                     %\bm{} bold command
-\usepackage{siunitx}                % SI units
+\usepackage{verbatim}  % \begin{comment} %\begin{verbatim}
+\usepackage{fancyvrb}  % ??? addon for verbatim?
+\usepackage{bm}        %\bm{} bold command
+\usepackage{siunitx}   % SI units
 \usepackage{enumerate}
-\usepackage{enumitem}               % gives \begin{enumerate} an optional style param
-                                    % e.g. \begin{enumerate}[label=(\alph*)]
-                                    % \alph \Alph \roman ...
+\usepackage{enumitem}  % \begin{enumerate}[label=(\alph*)]
+                      % \alph \Alph \roman ...
 
-\usepackage{lipsum}                 % for lorem ipsum testing
-% \usepackage{blindtext}              % for lorem ipsum testing
+\usepackage{lipsum}   % for lorem ipsum testing
+% \usepackage{blindtext}  % for more lorem ipsum testing
 
 
 %% FIGURES, GRAPHICS, TABLES
-\usepackage{float}                  % allows H option in \begin{figure}[H] to force here.
-\usepackage{graphicx}               % enhanced graphics support 
-\usepackage{array}                  % enables arrays
-\usepackage{booktabs}
+\usepackage{float}    % H to force HERE \begin{figure}[H] 
+\usepackage{graphicx} % enhanced graphics support 
+\usepackage{array}    % enables arrays
+\usepackage{booktabs} % ???
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[3]] PACKAGES - CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[3]] PACKAGES - CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{etoolbox}  % for better ifthen conditions with
                        % \newtoggle{flag} <-- declares flag, sets false
                        % \settoggle{flag}{true|false}
                        % \toggletrue{flag} \togglefalse{flag}
                        % \iftoggle{flag}{do true}{do false}
-
+\newtoggle{reference_section} % toggle for reference section
 
 %note to self: revisit which algo package you want
 % https://tex.stackexchange.com/questions/229355/algorithm-algorithmic-algorithmicx-algorithm2e-algpseudocode-confused
@@ -145,18 +148,21 @@
 % \usepackage{filecontents}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[4]] PACKAGES - SCIENTIFIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[4]] PACKAGES - SCIENTIFIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{amsmath}  
-\allowdisplaybreaks            % allows page breaks with \align{}
+\allowdisplaybreaks   % allow page breaks with align env
 \let\openbox\relax
 \usepackage{amssymb}
 \usepackage{amsthm}
 % \usepackage{amsfonts}
-\usepackage{mathtools}              % \Aboxed{}
+\usepackage{esint}      % \fint pv integrals and other ints
+\usepackage{mathtools}  % ??? \Aboxed{}
 \usepackage{physics}  
               % \bra{} \ket{} \expval{}{}
               % \commutator{}{} \anticommutator{}{}
@@ -167,18 +173,106 @@
               % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  
               % \eval{f(x)}_a^b
 
-\usepackage[makeroom]{cancel}       % \cancel{} \bcancel{} \xcancel \cancelto{val}{}  
+\usepackage[makeroom]{cancel}  % \cancel{} \bcancel{} \xcancel \cancelto{val}{}  
 
-\usepackage{tensor}                 %\indices and \tensor command
-                                    %e.g. M\indices{^a_b^{cd}}
+\usepackage{tensor}   %\indices and \tensor command
+                      % e.g. M\indices{^a_b^{cd}}
  
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[5]] MACROS \def will clobber commands, \newcommand will not! %%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[5]] AUTOMATIC PARENTHESIS & BRACKETS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% activate with \toggleautobrackets at beginning of .tex
+
+% inspired by: https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
+% maybe change to \mleft and \mright from  
+% \usepackage{mleftright} to fix some spacing issues or use \! etc...
+
+% requires amsmath. load dependency...
+% \@ifpackageloaded{mleftright}{}{\RequirePackage{mleftright}}
+
+\usepackage{autoleftright} % loads autobrackets.sty
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[7]] TCOLORBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\usepackage{varwidth}
+\usepackage{lipsum}
+\newtcolorbox{mybox}[2][]{enhanced,
+  skin=enhancedlast jigsaw,
+  attach boxed title to top left={xshift=-4mm,yshift=-0.5mm},
+  fonttitle=\bfseries\sffamily,
+  varwidth boxed title=0.7\linewidth, 
+  colbacktitle=blue!45!white,
+  colframe=red!50!black, 
+  interior style={top color=blue!10!white,bottom color=red!10!white}, 
+  boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt}, 
+  underlay boxed title={
+    \fill[blue!45!white] (title.north west) 
+    -- (title.north east)
+    -- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
+    -- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm)-- (title.south west) -- cycle;
+    \fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north west)-- +(-0.4,0) -- +(0,-0.3) -- cycle;
+    \fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north east)-- +(0,-0.3) -- +(0.4,0) -- cycle;  },
+  title={#2},#1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[8]] HYPERREF LINKS & TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% LINKS AND BOOKMARKS VIA HYPERREF
+% Most packages should load before hyperref but there are exceptions
+% https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
+\definecolor{urlblue}{RGB}{46,46,177}
+\usepackage[]{hyperref}
+\hypersetup{
+    %pdftitle={Your title here},
+    pdfauthor={Shervin Sahba},
+    %pdfsubject={Your subject here},
+    %pdfkeywords={keyword1, keyword2},
+    bookmarksnumbered=true,     
+    bookmarksopen=true,         % show bookmarks with subtrees expanded
+    bookmarksopenlevel=1,       % ... up to level 1
+    colorlinks=true,            % use colored links
+    urlcolor=urlblue,           % color of URL
+    linkcolor=blue,              % color of links
+    citecolor=blue,             % color of citations
+    breaklinks=true,            % allow links to break over multiple lines
+    pdfstartview=Fit,           % set startup pdf page view
+    pdfpagemode=UseOutlines,    % this is the option you were lookin for
+    %pdfpagelayout=TwoPageRight
+}
+% \usepackage[colorlinks=true,      % Color Links
+%             urlcolor=urlblue,
+%             linkcolor=black,
+%             citecolor=black,
+%             breaklinks=true,      
+%             bookmarks=true      % create pdf bookmarks
+%             ]{hyperref} 
+% \usepackage{hypcap}             % bookmarks should anchor at image not caption
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[M]] MACROS \def will clobber commands, \newcommand will not! %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% GREEK SYMBOLS
 \newcommand{\eps}{\epsilon}                 % \epsilon
@@ -188,10 +282,11 @@
 
 %differential d
 \renewcommand\d{\mathop{}\!\mathrm{d}}
+% \renewcommand\d{\mathop{}\!\mathrm{d}}
 % \renewcommand\d[1]{\mathop{}\,\mathrm{d}#1\@ifnextchar\d{\mspace{-6mu}}{}}
 
-\newcommand{\lp}{\left}                     % \left{}
-\newcommand{\rp}{\right}                    % \right{}
+% \newcommand{\lp}{\left}                     % \left{}
+% \newcommand{\rp}{\right}                    % \right{}
 \newcommand{\idx}{\indices}                 % \indices{}
 \newcommand{\mbf}[1]{\mathbf{#1}}           % \mathbf{}
 \newcommand{\mbb}[1]{\mathbb{#1}}           % \mathbb{}
@@ -254,102 +349,3 @@
 
 %numbers equations in the align* environment!
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[6]] AUTOMATIC LEFT AND RIGHT PARENTHESIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
-% maybe change to \mleft and \mright from  
-% \usepackage{mleftright} to fix some spacing issues or use \! etc...
-
-% activate with \toggleautobrackets at beginning of .tex
-
-\newcommand{\toggleautobrackets}{
-  \newtoggle{autobrackets}
-  \toggletrue{autobrackets}
-  \iftoggle{autobrackets}{
-    \makeatletter
-    \def\resetMathstrut@{
-      \setbox\z@\hbox{
-        \mathchardef\@tempa\mathcode`\[\relax
-        \def\@tempb####1"####2####3{\the\textfont"####3\char"}
-        \expandafter\@tempb\meaning\@tempa \relax
-      }
-      \ht\Mathstrutbox@\ht\z@ 
-      \dp\Mathstrutbox@\dp\z@
-    }
-    \makeatother
-    \mathcode`(="8000 
-    \mathcode`)="8000
-  }{}
-}
-\begingroup
-  \catcode`(\active \xdef({\left\string(}% 
-  \catcode`)\active \xdef){\right\string)}% 
-\endgroup
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[7]] TCOLORBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{tcolorbox}
-\tcbuselibrary{skins}
-
-\usepackage{varwidth}
-\usepackage{lipsum}
-\newtcolorbox{mybox}[2][]{enhanced,
-  skin=enhancedlast jigsaw,
-  attach boxed title to top left={xshift=-4mm,yshift=-0.5mm},
-  fonttitle=\bfseries\sffamily,
-  varwidth boxed title=0.7\linewidth, 
-  colbacktitle=blue!45!white,
-  colframe=red!50!black, 
-  interior style={top color=blue!10!white,bottom color=red!10!white}, 
-  boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt}, 
-  underlay boxed title={
-    \fill[blue!45!white] (title.north west) 
-    -- (title.north east)
-    -- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
-    -- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm)-- (title.south west) -- cycle;
-    \fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north west)-- +(-0.4,0) -- +(0,-0.3) -- cycle;
-    \fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north east)-- +(0,-0.3) -- +(0.4,0) -- cycle;  },
-  title={#2},#1}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[8]] HYPERREF LINKS & TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% LINKS AND BOOKMARKS VIA HYPERREF
-% Most packages should load before hyperref but there are exceptions
-% https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
-\definecolor{urlblue}{RGB}{46,46,177}
-\usepackage[]{hyperref}
-\hypersetup{
-    %pdftitle={Your title here},
-    pdfauthor={Shervin Sahba},
-    %pdfsubject={Your subject here},
-    %pdfkeywords={keyword1, keyword2},
-    bookmarksnumbered=true,     
-    bookmarksopen=true,         % show bookmarks with subtrees expanded
-    bookmarksopenlevel=1,       % ... up to level 1
-    colorlinks=true,            % use colored links
-    urlcolor=urlblue,           % color of URL
-    linkcolor=blue,              % color of links
-    citecolor=blue,             % color of citations
-    breaklinks=true,            % allow links to break over multiple lines
-    pdfstartview=Fit,           % set startup pdf page view
-    pdfpagemode=UseOutlines,    % this is the option you were lookin for
-    %pdfpagelayout=TwoPageRight
-}
-% \usepackage[colorlinks=true,      % Color Links
-%             urlcolor=urlblue,
-%             linkcolor=black,
-%             citecolor=black,
-%             breaklinks=true,      
-%             bookmarks=true      % create pdf bookmarks
-%             ]{hyperref} 
-% \usepackage{hypcap}             % bookmarks should anchor at image not caption
