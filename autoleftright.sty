@@ -1,0 +1,111 @@
+%%
+%% This is file `autoleftright.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% autoleftright.dtx  (with options: `package')
+%% ----------------------------------------------------------------
+%% autoleftright --- Automatically prepends left and right calls to parenthesis and brackets in math mode.
+%% Copyright (C) 2020 by Shervin Sahba
+%% E-mail: shervinsahba@gmail.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See https://www.latex-project.org/lppl.txt
+%% ----------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{autoleftright}[2020/05/07 v1.0 Automatically prepends left and right calls to parenthesis and brackets in math mode.]
+
+
+\@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}
+
+\def\setautolrangle{
+  \let\oldlangle\langle
+  \let\oldrangle\rangle
+  \xdef\langle{\left \oldlangle}
+  \xdef\rangle{\right\oldrangle}
+}
+
+\def\setautolrceil{
+  \let\oldlceil\lceil
+  \let\oldrceil\rceil
+  \xdef\lceil{\left \oldlceil}
+  \xdef\rceil{\right\oldrceil}
+}
+
+\def\setautolrfloor{
+  \let\oldlfloor\lfloor
+  \let\oldrfloor\rfloor
+  \xdef\lfloor{\left \oldlfloor}
+  \xdef\rfloor{\right\oldrfloor}
+}
+
+
+\def\setautolrpb{
+  % TODO: Need to actually preserve normal parenthesis and
+  % brackets. For now, these options are close to normal
+  % height.
+  \def\lp{\texttt{\big(}}
+  \def\rp{\texttt{\big)}}
+  \def\lb{\texttt{\big[}}
+  \def\rb{\texttt{\big]}}
+
+  \def\resetMathstrut@{ %% compare with amsmath.sty
+  % resetMathstrut builds a box around math mode tex, like \strut does for text mode. We redefine resetMathstrut to permit modification of character-based delimiters
+    \begingroup
+      \setbox\z@\hbox{} %% create a horizontal box, z@
+      \edef\@tempa{ %% match height/depth of math box to z@
+        \ht\Mathstrutbox@\the\ht\z@\relax
+        \dp\Mathstrutbox@\the\dp\z@\relax
+      }
+    \expandafter\endgroup\@tempa
+  }
+  % set char delimeters to active mathcode, allowing them to be defined.
+  \mathcode`(="8000
+  \mathcode`)="8000
+  \mathcode`[="8000
+  \mathcode`]="8000
+  % TODO work on | delimiters, alternating left and right
+}
+
+
+\def\autoleftright{
+  \setautolrfloor
+  \setautolrceil
+  \setautolrangle
+  \setautolrpb
+}
+
+\begingroup
+  \catcode`(\active
+  \catcode`)\active
+  \xdef({\left \string(}
+  \xdef){\right\string)}
+\endgroup
+
+\begingroup
+  \catcode`[\active
+  \catcode`]\active
+  \xdef[{\left \string[}
+  \xdef]{\right\string]}
+\endgroup
+
+%%
+%% Copyright (C) 2020 by Shervin Sahba <shervinsahba@gmail.com>
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3c of this license or (at your option) any later
+%% version.  The latest version of this license is in the file:
+%%
+%% https://www.latex-project.org/lppl.txt
+%%
+%% This work is "maintained" (as per LPPL maintenance status) by
+%% You.
+%%
+%% This work consists of the file  autoleftright.dtx
+%% and the derived files           autoleftright.ins,
+%%                                 autoleftright.pdf, and
+%%                                 autoleftright.sty.
+%%
+%%
+%% End of file `autoleftright.sty'.

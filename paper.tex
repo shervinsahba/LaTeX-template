@@ -7,50 +7,64 @@
 % [[2]] REFERENCES
 % [[3]] APPENDICES
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass{shervin} % load .cls
 
 \usepackage{shervin}  % shervin.sty
-\allowdisplaybreaks   % allows pagebreaks with align env
-\toggleautobrackets   % automate ( ) -> \left( \right)
+\autoleftright  % automate ( ) -> \left( \right)
                       % manually override a
                       % particular bracket by specifying
                       % \left \right \bigl etc...
-
+\toggletrue{reference_section}  % print references
 
 \articletype{\today}	% header control, top left
-\journalname{Untitled}	% header control, top right
+\journalname{}	% header control, top right
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[0]] DOCUMENT BEGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[0]] DOCUMENT BEGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \title{Untitled - \today}
 
 \author{Shervin Sahba\authormark{}}
 \address{\authormark{}Department of Physics, University of Washington, Seattle, USA.}
-\email{ssahba@uw.edu} 
+\email{ssahba@uw.edu}
 % \homepage{shervinsahba.com}
 
 \begin{abstract*}
 This describes the paper. (It is an abstract abstract.) \footnote{Footnote!}
 \end{abstract*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[1]] BODY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[1]] BODY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction and Overview} \label{sec: Introduction}
+
+Demonstrating ((parenthesis)), [[brackets]], and \{\{escaped braces\}\}.
 
 \begin{tcolorbox}[title=Cool Box, fonttitle=\bfseries, titlebox=visible, sidebyside, enhanced, frame style={left color=red!75!black,right color=blue!75!black}]
 \begin{align}
 &\boxed{(((x)))} \\
-c&= \innerprod{a}{b}
+& [[[y]]] \\
+& [\bigg[[y]\bigg]] \\
+& \{\{\{z\}\}\} \\
+& [([mixed)]) \\
+& (\lp\lp q \rp\rp) \\
+& \lb\lb\lb q \rb\rb\rb \\
+& \langle\langle\langle angles \rangle\rangle\rangle \\
+& \lceil\lceil\lceil ceil \rceil\rceil\rceil \\
+& \lfloor\lfloor\lfloor floor \rfloor\rfloor\rfloor \\
+& \oldlangle\oldlangle\oldlangle old angles \oldrangle\oldrangle\oldrangle \\
+& \oldlceil\oldlceil\oldlceil old ceils \oldrceil\oldrceil\oldrceil \\
+& \oldlfloor\oldlfloor\oldlfloor old floors \oldrfloor\oldrfloor\oldrfloor \\
+& \left| \left| \left| pipe \right|\right|\right| \\
+& \left\| \left\| \left\| doublepipe \right\|\right\|\right\| \\
+&\innerprod{\innerprod{\innerprod{a}{b}}{c}}{d}
 \end{align}
 
 \tcblower
@@ -59,7 +73,8 @@ c&= \innerprod{a}{b}
 
 
 \subsection{Overview} \label{sec: Overview}
-
+An equation follows
+\[(\int_0^x\sin(y) \d y = \text{spaghetti})\]
 \begin{mybox}{Fancy box}
 \lipsum[2]
 \end{mybox}
@@ -82,23 +97,25 @@ c&= \innerprod{a}{b}
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[2]] REFERENCES - use \citep and \citet with natbib, not \cite %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bigskip
-\bibliographystyle{abbrvnat}
-\bibliography{references} \label{sec: References}
- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[2]] REFERENCES - use \citep and \citet with natbib, not \cite %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iftoggle{reference_section}{
+	\bigskip
+	\bibliographystyle{abbrvnat}
+	\bibliography{references} \label{sec: References}
+}{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[3]] APPENDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[3]] APPENDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \clearpage
 % \section{Appendix A} \label{sec:AppendixA}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
