@@ -1,5 +1,5 @@
 % LaTeX article class by Shervin Sahba
-% shervinsahba@gmail.com
+% shervin@tuta.io
 
 % CONTENTS:
 % [[0]] AUTHOR SETTINGS
