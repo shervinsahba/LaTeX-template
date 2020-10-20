@@ -45,8 +45,8 @@
 
 
 %% FIGURES, GRAPHICS, TABLES
-\usepackage{float}    % H to force HERE \begin{figure}[H] 
-\usepackage{graphicx} % enhanced graphics support 
+\usepackage{float}    % H to force HERE \begin{figure}[H]
+\usepackage{graphicx} % enhanced graphics support
 \usepackage{array}    % enables arrays
 \usepackage{booktabs} % ???
 
@@ -74,7 +74,7 @@
 
 \usepackage{listings}              %  code listing: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
 % Basic shared code listing settings
-\lstset{ 
+\lstset{
   basicstyle=\ttfamily             % the size/style of the fonts that are used for the code
     \lst@ifdisplaystyle\footnotesize\fi,  %switch to footnotesize font for display code
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
@@ -118,7 +118,7 @@
     % basicstyle=\small\tt,
     commentstyle=\color[rgb]{0.13,0.54,0.13},
     morekeywords={
-        Console,  
+        Console,
         WriteLine,
         int,
     },
@@ -133,7 +133,7 @@
     language={matlab},
     commentstyle=\color[rgb]{0.13,0.54,0.13},
     morekeywords={
-        Console,  
+        Console,
         WriteLine,
         int,
     },
@@ -155,7 +155,7 @@
 %% [[4]] PACKAGES - SCIENTIFIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{amsmath}  
+\usepackage{amsmath}
 \allowdisplaybreaks   % allow page breaks with align env
 \let\openbox\relax
 \usepackage{amssymb}
@@ -163,21 +163,21 @@
 % \usepackage{amsfonts}
 \usepackage{esint}      % \fint pv integrals and other ints
 \usepackage{mathtools}  % ??? \Aboxed{}
-\usepackage{physics}  
+\usepackage{physics}
               % \bra{} \ket{} \expval{}{}
               % \commutator{}{} \anticommutator{}{}
-              % \dv{Q}{t} = \dv{s}{t}  
-              % \dv[n]{Q}{t} = \dv[n]{s}{t}  
+              % \dv{Q}{t} = \dv{s}{t}
+              % \dv[n]{Q}{t} = \dv[n]{s}{t}
               % \pdv{Q}{t} = \pdv{s}{t}
-              % \pdv[n]{Q}{t} = \pdv[n]{s}{t}  
-              % \pdv{Q}{x}{t} = \pdv{s}{x}{t}  
+              % \pdv[n]{Q}{t} = \pdv[n]{s}{t}
+              % \pdv{Q}{x}{t} = \pdv{s}{x}{t}
               % \eval{f(x)}_a^b
 
-\usepackage[makeroom]{cancel}  % \cancel{} \bcancel{} \xcancel \cancelto{val}{}  
+\usepackage[makeroom]{cancel}  % \cancel{} \bcancel{} \xcancel \cancelto{val}{}
 
 \usepackage{tensor}   %\indices and \tensor command
                       % e.g. M\indices{^a_b^{cd}}
- 
+
 
 
 
@@ -190,7 +190,7 @@
 % activate with \toggleautobrackets at beginning of .tex
 
 % inspired by: https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
-% maybe change to \mleft and \mright from  
+% maybe change to \mleft and \mright from
 % \usepackage{mleftright} to fix some spacing issues or use \! etc...
 
 % requires amsmath. load dependency...
@@ -214,13 +214,13 @@
   skin=enhancedlast jigsaw,
   attach boxed title to top left={xshift=-4mm,yshift=-0.5mm},
   fonttitle=\bfseries\sffamily,
-  varwidth boxed title=0.7\linewidth, 
+  varwidth boxed title=0.7\linewidth,
   colbacktitle=blue!45!white,
-  colframe=red!50!black, 
-  interior style={top color=blue!10!white,bottom color=red!10!white}, 
-  boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt}, 
+  colframe=red!50!black,
+  interior style={top color=blue!10!white,bottom color=red!10!white},
+  boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt},
   underlay boxed title={
-    \fill[blue!45!white] (title.north west) 
+    \fill[blue!45!white] (title.north west)
     -- (title.north east)
     -- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
     -- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm)-- (title.south west) -- cycle;
@@ -244,7 +244,7 @@
     pdfauthor={Shervin Sahba},
     %pdfsubject={Your subject here},
     %pdfkeywords={keyword1, keyword2},
-    bookmarksnumbered=true,     
+    bookmarksnumbered=true,
     bookmarksopen=true,         % show bookmarks with subtrees expanded
     bookmarksopenlevel=1,       % ... up to level 1
     colorlinks=true,            % use colored links
@@ -260,9 +260,9 @@
 %             urlcolor=urlblue,
 %             linkcolor=black,
 %             citecolor=black,
-%             breaklinks=true,      
+%             breaklinks=true,
 %             bookmarks=true      % create pdf bookmarks
-%             ]{hyperref} 
+%             ]{hyperref}
 % \usepackage{hypcap}             % bookmarks should anchor at image not caption
 
 
@@ -282,6 +282,11 @@
 
 %differential d
 \renewcommand\d{\mathop{}\!\mathrm{d}}
+\newcommand\dx{\mathop{}\!\mathrm{d}x}
+\newcommand\dy{\mathop{}\!\mathrm{d}y}
+\newcommand\dz{\mathop{}\!\mathrm{d}z}
+\newcommand\dr{\mathop{}\!\mathrm{d}r}
+
 % \renewcommand\d{\mathop{}\!\mathrm{d}}
 % \renewcommand\d[1]{\mathop{}\,\mathrm{d}#1\@ifnextchar\d{\mspace{-6mu}}{}}
 
@@ -315,6 +320,9 @@
 \def\FT{\mathcal{F}}                % Fourier Transform
 \def\iFT{\mathcal{F}^{-1}}          % Inverse Fourier
 
+\newcommand{\ointcw}{\ointclockwise}        % contour integral shorthand
+\newcommand{\ointccw}{\ointctrclockwise}
+
 
 %% QUANTUM SYMBOLS
 
@@ -327,11 +335,63 @@
 
 
 
+%% CUSTOM INTEGRAL SIGNS with \letteronint{}
+\makeatletter %% <- make @ usable in macro names
+\let\DOTSI\relax % amsmath support for \dots
+\newcommand*{\letteronint}[1]{%
+  \DOTSI
+  \mathop{%
+    \mathpalette\@LetterOnInt{#1}%
+  }%
+  \mkern-\thinmuskip % thin space is inserted between two \mathop
+  \int
+}
+\newcommand*{\@LetterOnInt}[2]{%
+  \sbox0{$#1\int\m@th$}%
+  \sbox2{$%
+    \ifx#1\displaystyle
+      \textstyle
+    \else
+      \scriptscriptstyle
+    \fi
+    #2%
+  \m@th$}%
+  \dimen@=.4\dimexpr\ht0+\dp0\relax
+  \ifdim\dimexpr\ht2+\dp2\relax>\dimen@
+    \sbox2{\resizebox*{!}{\dimen@}{\unhcopy2}}%
+  \fi
+  \dimen@=\wd0 %
+  \ifdim\wd2>\dimen@
+    \dimen@=\wd2 %
+  \fi
+  \rlap{\hbox to \dimen@{\hfil
+    $#1\vcenter{\copy2}\m@th$%
+  \hfil}}%
+  \ifdim\dimen@>\wd0 %
+    \kern.5\dimexpr\dimen@-\wd0\relax
+  \fi
+}
+%% Define arrow curving downwards:
+% \newcommand*{\curvearrowbotright}{\mathpalette\rotmath@internal\curvearrowleft}
+% \newcommand*\rotmath@internal[2]{\rotatebox{180}{$\m@th#1#2$}}
+\makeatother %% <- revert @
+
+%% Custom letteronint integrals
+\newcommand*{\intcw}{\letteronint{\mspace{3mu}\curvearrowright}}  % contour int cw
+% \newcommand*{\intccwbot}{\letteronint{\mspace{3mu}\curvearrowbotright}}  %contour int ccw
+\newcommand*{\intccw}{\letteronint{\mspace{3mu}\reflectbox{$\curvearrowright\!\!$}}}  %contour int ccw
+
+
+
+
+
+
+
 %% MISC
 
 \newcommand{\TODO}[1]{\text{\color{red}{TODO #1}}}            % RED TODO FLAG
 \newcommand{\tagg}{\stepcounter{equation}\tag{\theequation}}  % add a Eq. (tag)
-\newcommand{\mychar}[1]{    % inline image, size of a character                              
+\newcommand{\mychar}[1]{    % inline image, size of a character
   \begingroup\normalfont
   \includegraphics[height=\fontcharht\font`\B]{#1}
   \endgroup}

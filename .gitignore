@@ -37,6 +37,6 @@
 **.synctex.gz
 **.fls
 **/latex*/*.log
-**/latex*/*.out 
+**/latex*/*.out
 **/latex*/*.pdf				# may want to push a GitHub Release for final pdf 
 **/latex*/.Rhistory
