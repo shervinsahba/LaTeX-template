@@ -50,6 +50,8 @@
 \usepackage{array}    % enables arrays
 \usepackage{booktabs} % ???
 
+\usepackage{parskip}  % disables paragraph indent. adds a bit of paragraph spacing
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -181,8 +183,6 @@
 
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % [[5]] AUTOMATIC PARENTHESIS & BRACKETS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -280,12 +280,17 @@
 
 %% MATH SYMBOLS AND OBJECTS
 
+% set notation with \set{x | y}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\setaux#1}
+ \def\setaux#1|{#1\;\delimsize\vert\;}
+
 %differential d
 \renewcommand\d{\mathop{}\!\mathrm{d}}
 \newcommand\dx{\mathop{}\!\mathrm{d}x}
 \newcommand\dy{\mathop{}\!\mathrm{d}y}
 \newcommand\dz{\mathop{}\!\mathrm{d}z}
 \newcommand\dr{\mathop{}\!\mathrm{d}r}
+\newcommand\dt{\mathop{}\!\mathrm{d}t}
 
 % \renewcommand\d{\mathop{}\!\mathrm{d}}
 % \renewcommand\d[1]{\mathop{}\,\mathrm{d}#1\@ifnextchar\d{\mspace{-6mu}}{}}
@@ -297,6 +302,19 @@
 \newcommand{\mbb}[1]{\mathbb{#1}}           % \mathbb{}
 \newcommand{\mc}[1]{\mathcal{#1}}           % \mathcal{}
 \def\R{\mathbb{R}}                          % reals
+\def\C{\mathbb{C}}                          % complex numbers
+\def\Z{\mathbb{Z}}                          % integers
+\def\N{\mathbb{N}_{\ge0}}                   % natural integers
+\def\Nplus{\mathbb{N}_{>0}}                 % natural integers, not zero
+\def\E{\mathbb{E}}                          % expectation
+\def\P{\mathbb{P}}                          % probability
+\def\PV{\mathcal{P}}                        % principal value
+\def\Cc{\mathcal{C}}                        % contour
+\def\FT{\mathcal{F}}                        % fourier transform
+
+
+\newcommand{\bigO}[1]{\mathcal{O}({#1})}    % big O
+\newcommand{\littleo}[1]{\mathcal{o}({#1})} % little o
 \renewcommand{\vec}[1]{\boldsymbol{#1}}     % vector, as bold symbol
 \newcommand{\uvec}[1]{\vec{\hat{#1}}}       % unit vector, as bold with hat
 \newcommand{\mat}[1]{\boldsymbol{#1}}       % matrix, as bold symbol
@@ -304,8 +322,7 @@
 %\newcommand{\I}{^{-1}}                      % inverse
 \newcommand{\cst}[1]{\mathsf{#1}}           % constant
 \newcommand{\indicator}[1]{\mathbf{1}_{#1}} % indicator function
-\def\E{\mathbb{E}}                          % expectation
-\def\P{\mathbb{P}}                          % probability
+
 \newcommand{\hess}{\grad^2}                 % hessian, grad^2 not nabla^2
 \newcommand{\prox}{\mathrm{prox}}           % prox
 \newcommand{\epi}{\mathrm{epi}}             % epi
