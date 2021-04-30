@@ -25,7 +25,7 @@
 %% [[0]] AUTHOR SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\myname{Shervin Sahba}
+\newcommand{\myname}{Shervin Sahba}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -38,7 +38,7 @@
 \usepackage{lastpage}               % Number of pages in the document
 
 %% FONT, TEXT PACKAGES
-\usepackage[table]{xcolor}          
+\usepackage[table]{xcolor}
 \usepackage{silence}
 \WarningFilter{microtype}{Font}
 \usepackage[T1]{fontenc}
@@ -49,7 +49,7 @@
 
 
 %% FONT SPACING ADJUSTMENTS
-\usepackage{ifpdf}  % letterspacing with latex + dvipdf, so need the soul package. 
+\usepackage{ifpdf}  % letterspacing with latex + dvipdf, so need the soul package.
                     % See http://tex.stackexchange.com/a/271714/226
 \ifpdf
   \usepackage[tracking = true, letterspace = 16]{microtype}
@@ -168,9 +168,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \arrayrulecolor{black} % Set the color of the horizontal rules
-\renewcommand{\arraystretch}{1.5} % Increased line spacing
-
-
+\renewcommand{\arraystretch}{1.1} % array spacing
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,41 +194,3 @@
                                      {1ex plus .2ex}%
                                      {\small\upshape\sffamily}}
 
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[ ]] NEW CAPTION COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% What is this? I don't remember this. Did it come from the OSA template?
-
-% \newcommand\@MaxCapWidth{4.25in}
-% \setlength\belowcaptionskip{1pt}
-% \long\def\@makecaption#1#2{%
-%   \small
-%   \vskip\abovecaptionskip
-%   \sbox\@tempboxa{#1. #2}%
-%   \ifdim \wd\@tempboxa >\@MaxCapWidth
-%     \hskip2.25pc\parbox{4.5in}{#1. #2}
-%   \else
-%     \global \@minipagefalse
-%     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
-%   \fi
-%   \vskip\belowcaptionskip\normalsize}
-
-% %% New (more liberal than the default) float commands
-% \renewcommand{\topfraction}{.85}
-% \renewcommand{\bottomfraction}{.7}
-% \renewcommand{\textfraction}{.15}
-% \renewcommand{\floatpagefraction}{.66}
-% \renewcommand{\dbltopfraction}{.66}
-% \renewcommand{\dblfloatpagefraction}{.66}
-% \setcounter{topnumber}{9}
-% \setcounter{bottomnumber}{9}
-% \setcounter{totalnumber}{20}
-% \setcounter{dbltopnumber}{9}

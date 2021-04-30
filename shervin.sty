@@ -37,21 +37,19 @@
 \usepackage{bm}        %\bm{} bold command
 \usepackage{siunitx}   % SI units
 \usepackage{enumerate}
-\usepackage{enumitem}  % \begin{enumerate}[label=(\alph*)]
-                      % \alph \Alph \roman ...
-
+\usepackage{enumitem}  % \begin{enumerate}[label=(\alph*)] % \alph \Alph \roman
 \usepackage{lipsum}   % for lorem ipsum testing
-% \usepackage{blindtext}  % for more lorem ipsum testing
+% \usepackage{blindtext}  % more lorem ipsum testing
 \usepackage[normalem]{ulem}  % underline with linebreaks \uline, also supports other forms of emphasis
 
 %% FIGURES, GRAPHICS, TABLES
 \usepackage{float}    % H to force HERE \begin{figure}[H]
 \usepackage{graphicx} % enhanced graphics support
-\usepackage{svg}      % for \includesvg[]{} figures
+\usepackage{svg}      % svg in figures \includesvg[]{}
+\usepackage{subfig}   % subfigures \subfloat[label]{\includegraphics{}}
 \usepackage{array}    % enables arrays
 \usepackage{booktabs} % ???
-
-\usepackage{parskip}  % disables paragraph indent. adds a bit of paragraph spacing
+\usepackage{parskip}  % disables paragraph indent. adds a space between newlined spaced paragraphs
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,29 +157,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{amsmath}
-\allowdisplaybreaks   % allow page breaks with align env
+\allowdisplaybreaks     % allow page breaks with align env
 \let\openbox\relax
 \usepackage{amssymb}
 \usepackage{amsthm}
+
 % \usepackage{amsfonts}
 \usepackage{esint}      % \fint pv integrals and other ints
 \usepackage{mathtools}  % ??? \Aboxed{}
-\usepackage{physics}
-              % \bra{} \ket{} \expval{}{}
-              % \commutator{}{} \anticommutator{}{}
-              % \dv{Q}{t} = \dv{s}{t}
-              % \dv[n]{Q}{t} = \dv[n]{s}{t}
-              % \pdv{Q}{t} = \pdv{s}{t}
-              % \pdv[n]{Q}{t} = \pdv[n]{s}{t}
-              % \pdv{Q}{x}{t} = \pdv{s}{x}{t}
-              % \eval{f(x)}_a^b
-
+\usepackage{physics}    % so many good math and physics symbols!
 \usepackage[makeroom]{cancel}  % \cancel{} \bcancel{} \xcancel \cancelto{val}{}
-
 \usepackage{tensor}   %\indices and \tensor command
                       % e.g. M\indices{^a_b^{cd}}
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -242,7 +229,7 @@
 \usepackage[]{hyperref}
 \hypersetup{
     %pdftitle={Your title here},
-    pdfauthor={Shervin Sahba},
+    pdfauthor={\myname},
     %pdfsubject={Your subject here},
     %pdfkeywords={keyword1, keyword2},
     bookmarksnumbered=true,
@@ -250,24 +237,13 @@
     bookmarksopenlevel=1,       % ... up to level 1
     colorlinks=true,            % use colored links
     urlcolor=urlblue,           % color of URL
-    linkcolor=blue,              % color of links
+    linkcolor=blue,             % color of links
     citecolor=blue,             % color of citations
     breaklinks=true,            % allow links to break over multiple lines
     pdfstartview=Fit,           % set startup pdf page view
     pdfpagemode=UseOutlines,    % this is the option you were lookin for
     %pdfpagelayout=TwoPageRight
 }
-% \usepackage[colorlinks=true,      % Color Links
-%             urlcolor=urlblue,
-%             linkcolor=black,
-%             citecolor=black,
-%             breaklinks=true,
-%             bookmarks=true      % create pdf bookmarks
-%             ]{hyperref}
-% \usepackage{hypcap}             % bookmarks should anchor at image not caption
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -279,80 +255,88 @@
 \newcommand{\eps}{\epsilon}                 % \epsilon
 
 
-%% MATH SYMBOLS AND OBJECTS
+%% MATH SYMBOLS
+\newcommand{\mbf}[1]{\mathbf{#1}}           % \mathbf{}
+\newcommand{\mbb}[1]{\mathbb{#1}}           % \mathbb{}
+\newcommand{\mc}[1]{\mathcal{#1}}           % \mathcal{}
+\newcommand{\idx}{\indices}                 % \indices{}
 
-% set notation with \set{x | y}
-\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\setaux#1}
- \def\setaux#1|{#1\;\delimsize\vert\;}
-
-%differential d
+% differential d with pretty typesetting
 \renewcommand\d{\mathop{}\!\mathrm{d}}
 \newcommand\dx{\mathop{}\!\mathrm{d}x}
 \newcommand\dy{\mathop{}\!\mathrm{d}y}
 \newcommand\dz{\mathop{}\!\mathrm{d}z}
 \newcommand\dr{\mathop{}\!\mathrm{d}r}
+\newcommand\ds{\mathop{}\!\mathrm{d}s}
 \newcommand\dt{\mathop{}\!\mathrm{d}t}
+\newcommand\du{\mathop{}\!\mathrm{d}u}
 
-% \renewcommand\d{\mathop{}\!\mathrm{d}}
-% \renewcommand\d[1]{\mathop{}\,\mathrm{d}#1\@ifnextchar\d{\mspace{-6mu}}{}}
-
-% \newcommand{\lp}{\left}                     % \left{}
-% \newcommand{\rp}{\right}                    % \right{}
-\newcommand{\idx}{\indices}                 % \indices{}
-\newcommand{\mbf}[1]{\mathbf{#1}}           % \mathbf{}
-\newcommand{\mbb}[1]{\mathbb{#1}}           % \mathbb{}
-\newcommand{\mc}[1]{\mathcal{#1}}           % \mathcal{}
 \def\R{\mathbb{R}}                          % reals
 \def\C{\mathbb{C}}                          % complex numbers
 \def\Z{\mathbb{Z}}                          % integers
 \def\N{\mathbb{N}_{\ge0}}                   % natural integers
 \def\Nplus{\mathbb{N}_{>0}}                 % natural integers, not zero
+
 \def\E{\mathbb{E}}                          % expectation
 \def\P{\mathbb{P}}                          % probability
 \def\PV{\mathcal{P}}                        % principal value
-\def\Cc{\mathcal{C}}                        % contour
-\def\FT{\mathcal{F}}                        % fourier transform
+\def\FT{\mathcal{F}}                        % Fourier transform
+\def\iFT{\mathcal{F}^{-1}}                  % inverse Fourier transform
 
-\newcommand{\bigO}[1]{\mathcal{O}({#1})}    % big O
-\newcommand{\littleo}[1]{\mathcal{o}({#1})} % little o
 \renewcommand{\vec}[1]{\boldsymbol{#1}}     % vector, as bold symbol
-\newcommand{\uvec}[1]{\vec{\hat{#1}}}       % unit vector, as bold with hat
 \newcommand{\mat}[1]{\boldsymbol{#1}}       % matrix, as bold symbol
+\newcommand{\uvec}[1]{\vec{\hat{#1}}}       % unit vector, as bold with hat
 \newcommand{\T}{^{\textrm T}}               % transpose
 %\newcommand{\I}{^{-1}}                      % inverse
-\newcommand{\cst}[1]{\mathsf{#1}}           % constant
-\newcommand{\indicator}[1]{\mathbf{1}_{#1}} % indicator function
 
+\newcommand{\vect}[1]{%                     % quick pmatrix vector
+  \begingroup\def\arraystretch{0.5}
+    \begin{pmatrix}#1\end{pmatrix}\endgroup}
+
+\newcommand{\cst}[1]{\mathsf{#1}}           % constant
+
+\newcommand{\ointcw}{\ointclockwise}        % contour integral shorthand
+\newcommand{\ointccw}{\ointctrclockwise}
 \newcommand{\hess}{\grad^2}                 % hessian, grad^2 not nabla^2
-\newcommand{\prox}{\mathrm{prox}}           % prox
-\newcommand{\epi}{\mathrm{epi}}             % epi
-\newcommand{\sgn}{\mathrm{sgn}}             % sign function
-\newcommand{\proj}{\mathrm{proj}}           % projection
-\newcommand{\innerprod}[2]{\langle #1, #2 \rangle} % inner product
 \newcommand{\Sum}{\displaystyle\sum}        % \sum in displaystyle
+
+
+%% MATH OPERATORS
+\newcommand{\bigO}[1]{\mathcal{O}({#1})}    % big O
+\newcommand{\littleo}[1]{\mathcal{o}({#1})} % little o
+\newcommand{\indicator}[1]{\mathbf{1}_{#1}} % indicator function
+\DeclareMathOperator{\sgn}{sgn}             % sign function
+\DeclareMathOperator{\prox}{prox}           % prox
+\DeclareMathOperator{\epi}{epi}             % epi
+\DeclareMathOperator{\proj}{proj}           % projection
 \DeclareMathOperator{\am}{am}               % Jacobi Elliptic Am
 \DeclareMathOperator{\dn}{dn}               % Jacobi Elliptic Dn
 \DeclareMathOperator{\cn}{cn}               % Jacobi Elliptic Cn
 \DeclareMathOperator{\sn}{sn}               % Jacobi Elliptic Sn
-\def\FT{\mathcal{F}}                % Fourier Transform
-\def\iFT{\mathcal{F}^{-1}}          % Inverse Fourier
 
-\newcommand{\ointcw}{\ointclockwise}        % contour integral shorthand
-\newcommand{\ointccw}{\ointctrclockwise}
-
-
-%% QUANTUM SYMBOLS
-
-\newcommand{\bk}[3][]{\bra{#2}#1\ket{#3}}       % braket
-\newcommand{\kb}[2]{\ket{#1}\bra{#2}}           % ketbra
-% \newcommand{\com}[2]{\commutator{#1}{#2}}       % commutator
-% \newcommand{\acom}[2]{\anticommutator{#1}{#2}}  % anticommutator
-% \newcommand{\exv}[1]{\expval{#1}}               % expectation value (physics)
+\@ifundefined{autoleftright}
+  {%
+  \DeclarePairedDelimiterX{\innerprod}[2]\langle\rangle{#1, #2}
+  }{%
+  \DeclarePairedDelimiterX{\innerprod}[2]\oldlangle\oldrangle{#1, #2}
+  }
 
 
+\DeclarePairedDelimiterX{\set}[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}  % \set{x \given y} or \set{x}
 
 
-%% CUSTOM INTEGRAL SIGNS with \letteronint{}
+%% MATRIX ARRAY STRETCHING
+% adds an optional float param to matrix to change spacing
+% e.g. \begin{pmatrix}[1.2]
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+
+%% CUSTOM INTEGRAL SYMBOLS SETUP (\letteronint{} definition)
 \makeatletter %% <- make @ usable in macro names
 \let\DOTSI\relax % amsmath support for \dots
 \newcommand*{\letteronint}[1]{%
@@ -393,22 +377,16 @@
 % \newcommand*\rotmath@internal[2]{\rotatebox{180}{$\m@th#1#2$}}
 \makeatother %% <- revert @
 
-%% Custom letteronint integrals
+%% CUSTOM INTEGRALS SYMBOLS DEFINED
 \newcommand*{\intcw}{\letteronint{\mspace{3mu}\curvearrowright}}  % contour int cw
-% \newcommand*{\intccwbot}{\letteronint{\mspace{3mu}\curvearrowbotright}}  %contour int ccw
 \newcommand*{\intccw}{\letteronint{\mspace{3mu}\reflectbox{$\curvearrowright\!\!$}}}  %contour int ccw
 
 
-
-
-
-
-
 %% MISC
+\newcommand{\TODO}[1]{\text{\color{red}{TODO #1}}}  % RED TODO FLAG
 
-\newcommand{\TODO}[1]{\text{\color{red}{TODO #1}}}            % RED TODO FLAG
-\newcommand{\tagg}{\stepcounter{equation}\tag{\theequation}}  % add a Eq. (tag)
-\newcommand{\mychar}[1]{    % inline image, size of a character
+% inline image, size of a character
+\newcommand{\imagechar}[1]{
   \begingroup\normalfont
   \includegraphics[height=\fontcharht\font`\B]{#1}
   \endgroup}
@@ -419,7 +397,6 @@
 
 
 %% REFERENCES
-
 \newcommand{\eqn}[1]{Eqn.(#1)}
 \newcommand{\fig}[1]{Fig.(#1)}
 \newcommand{\Eqn}[1]{Equation (#1)}

@@ -15,40 +15,41 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{autoleftright}[2020/05/07 v1.0 Automatically prepends left and right calls to parenthesis and brackets in math mode.]
 
-
 \@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}
 
+
+%% OLD DELIMITERS
+\let\oldlangle\langle
+\let\oldrangle\rangle
+\let\oldlceil\lceil
+\let\oldrceil\rceil
+\let\oldlfloor\lfloor
+\let\oldrfloor\rfloor
+% TODO: Need to preserve normal parenthesis and brackets.
+% For now, these options are close to normal height.
+\def\lp{\texttt{\big(}}
+\def\rp{\texttt{\big)}}
+\def\lb{\texttt{\big[}}
+\def\rb{\texttt{\big]}}
+
+
 \def\setautolrangle{
-  \let\oldlangle\langle
-  \let\oldrangle\rangle
   \xdef\langle{\left \oldlangle}
   \xdef\rangle{\right\oldrangle}
 }
 
 \def\setautolrceil{
-  \let\oldlceil\lceil
-  \let\oldrceil\rceil
   \xdef\lceil{\left \oldlceil}
   \xdef\rceil{\right\oldrceil}
 }
 
 \def\setautolrfloor{
-  \let\oldlfloor\lfloor
-  \let\oldrfloor\rfloor
   \xdef\lfloor{\left \oldlfloor}
   \xdef\rfloor{\right\oldrfloor}
 }
 
 
 \def\setautolrpb{
-  % TODO: Need to actually preserve normal parenthesis and
-  % brackets. For now, these options are close to normal
-  % height.
-  \def\lp{\texttt{\big(}}
-  \def\rp{\texttt{\big)}}
-  \def\lb{\texttt{\big[}}
-  \def\rb{\texttt{\big]}}
-
   \def\resetMathstrut@{ %% compare with amsmath.sty
   % resetMathstrut builds a box around math mode tex, like \strut does for text mode. We redefine resetMathstrut to permit modification of character-based delimiters
     \begingroup
