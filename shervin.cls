@@ -125,6 +125,7 @@
 
 % Abstract environments, with and without copyright info
 \renewenvironment{abstract}{\vskip1pc\noindent\textbf{Abstract:\space}}{\\[12pt]\noindent{\fontsize{8pt}{9pt}\sffamily\copyright\, \number\year \hskip.05in\@copyrighttext}\par\vskip12pt}
+
 \newenvironment{abstract*}{\vskip1pc\noindent\textbf{\textsf{Abstract:}\space}}{}
 
 
@@ -143,8 +144,9 @@
 \newcommand{\journalname}[1]{\def\@journalname{#1}}
 \newcommand{\@articletype}{Article}  %change in .tex via \articlename{}
 \newcommand{\articletype}[1]{\def\@articletype{#1}}
-\fancyhead[L]{\headerfont \begin{tabular*}{\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}\vrule}}\arrayrulecolor{black}
-      \hline
+
+\fancyhead[L]{\headerfont \begin{tabular*}{\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}}}\arrayrulecolor{black}
+      % \hline
       \cellcolor{black}\textcolor{white}{\@articletype} & \@journalname\hspace{21pt}\thepage \\
       \hline
     \end{tabular*}}
