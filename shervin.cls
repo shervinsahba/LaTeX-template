@@ -135,16 +135,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pagestyle{fancy}          % Enables the custom headers/footers
-%   \lhead{}  \chead{}  \rhead{S. Sahba}
-%   \lfoot{}  \cfoot{}  \rfoot{\thepage}
+%   \lhead{}  \chead{}  \rhead{}
+%   \lfoot{}  \cfoot{}  \rfoot{}
 \fancyhf{}                 % Clear everything first
 \renewcommand{\headrule}{}
+
 % Journal like Header
-\newcommand{\@setheadertopright}{\today} %change in .tex via \setheadertopright{}
+\newcommand{\@setheadertopright}{\today} % default, can change via \setheadertopright{}
 \newcommand{\setheadertopright}[1]{\def\@setheadertopright{#1}}
-\newcommand{\@setheadertopleft}{Notes}  %change in .tex via \articlename{}
+
+\newcommand{\@setheadertopleft}{Notes}  % default, can change \via setheadertopleft{}
 \newcommand{\setheadertopleft}[1]{\def\@setheadertopleft{#1}}
 
+% Header bar setup
 \fancyhead[L]{\headerfont \begin{tabular*}{\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}}}\arrayrulecolor{black}
       % \hline
       \cellcolor{black}\textcolor{white}{\@setheadertopleft} & \@setheadertopright\hspace{21pt}\thepage \\
