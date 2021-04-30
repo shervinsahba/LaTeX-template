@@ -15,9 +15,9 @@
 \autoleftright  % automate ( ) -> \left( \right)
     % note: manually override by using \left \right \bigl etc...
 
-\toggletrue{reference_section}  % print references
-\articletype{\today}			% header control, top left
-\journalname{}					% header control, top right
+% \toggletrue{reference_section}  % print references
+\articletype{Notes}			% header control, top left
+\journalname{\today}			% header control, top right
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,9 +26,8 @@
 \begin{document}
 
 \title{Untitled Document - \today}
-
 \author{Shervin Sahba\authormark{}}
-\address{\authormark{}Department of Physics, University of Washington, Seattle, USA.}
+\address{\authormark{}University of Washington}
 \email{ssahba@uw.edu}
 % \homepage{shervinsahba.github.io}
 
@@ -41,55 +40,13 @@ This describes the paper. \footnote{Footnote!}
 %% [[1]] BODY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introduction and Overview} \label{sec: Introduction}
+\section{Section} \label{sec: }
 
-Demonstrating ((parenthesis)), [[brackets]], and \{\{escaped braces\}\}.
-
-\begin{tcolorbox}[title=Cool Box, fonttitle=\bfseries, titlebox=visible, sidebyside, enhanced, frame style={left color=red!75!black,right color=blue!75!black}]
-\begin{align}
-&\boxed{(((x)))} \\
-& [[[y]]] \\
-& [\bigg[[y]\bigg]] \\
-& \{\{\{z\}\}\} \\
-& [([mixed)]) \\
-& (\lp\lp q \rp\rp) \\
-& \lb\lb\lb q \rb\rb\rb \\
-& \langle\langle\langle angles \rangle\rangle\rangle \\
-& \lceil\lceil\lceil ceil \rceil\rceil\rceil \\
-& \lfloor\lfloor\lfloor floor \rfloor\rfloor\rfloor \\
-& \oldlangle\oldlangle\oldlangle old angle \oldrangle\oldrangle\oldrangle \\
-& \oldlceil\oldlceil\oldlceil old ceil \oldrceil\oldrceil\oldrceil \\
-& \oldlfloor\oldlfloor\oldlfloor old floor \oldrfloor\oldrfloor\oldrfloor \\
-& \left| \left| \left| pipe \right|\right|\right| \\
-& \left\| \left\| \left\| doublepipe \right\|\right\|\right\| \\
-& \set{a  \given sdfsd} \\
-& \innerprod{a}{b}
-\end{align}
-
-\tcblower
-\lipsum[1]
-\end{tcolorbox}
+Words be written yonder.
 
 
-\subsection{Overview} \label{sec: Overview}
-An equation follows
-\[(\int_0^x\sin(y) \d y = \text{spaghetti})\]
-\begin{mybox}{Fancy box}
-\lipsum[2]
-\end{mybox}
-
-\bigskip
-\section{Theoretical Background} \label{sec:Background}
-
-\bigskip
-\section{Algorithm Development \& Implementation} \label{sec:Methods}
-
-\bigskip
-\section{Computational Results} \label{sec:Results}
-
-\bigskip
-\section{Summary \& Conclusions} \label{sec:Conclusion}
-
+\newpage
+\section{Oh wow}
 
 
 
