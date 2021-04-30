@@ -140,14 +140,14 @@
 \fancyhf{}                 % Clear everything first
 \renewcommand{\headrule}{}
 % Journal like Header
-\newcommand{\@journalname}{S. Sahba} %change in .tex via \journalname{}
-\newcommand{\journalname}[1]{\def\@journalname{#1}}
-\newcommand{\@articletype}{Article}  %change in .tex via \articlename{}
-\newcommand{\articletype}[1]{\def\@articletype{#1}}
+\newcommand{\@setheadertopright}{\today} %change in .tex via \setheadertopright{}
+\newcommand{\setheadertopright}[1]{\def\@setheadertopright{#1}}
+\newcommand{\@setheadertopleft}{Notes}  %change in .tex via \articlename{}
+\newcommand{\setheadertopleft}[1]{\def\@setheadertopleft{#1}}
 
 \fancyhead[L]{\headerfont \begin{tabular*}{\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}}}\arrayrulecolor{black}
       % \hline
-      \cellcolor{black}\textcolor{white}{\@articletype} & \@journalname\hspace{21pt}\thepage \\
+      \cellcolor{black}\textcolor{white}{\@setheadertopleft} & \@setheadertopright\hspace{21pt}\thepage \\
       \hline
     \end{tabular*}}
 
