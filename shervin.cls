@@ -87,19 +87,7 @@
 
 
 % Title (headings are now sans serif; left-aligned)
-\ifpdf
-  % microtype only works in pdflatex
-  \newcommand\OEtitle[1]{%
-    {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright{#1}\par\vskip.15in}
-    % {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright\textls{#1}\par\vskip.15in}
-  }
-\else
-  \newcommand\OEtitle[1]{%
-    {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright{#1}\par\vskip.15in}
-    %     {\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright\lsbold{#1}\par\vskip.15in}
-
-  }
-\fi
+\newcommand\OEtitle[1]{{\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright{#1}}\par}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,12 +99,12 @@
 \colorlet{authorcolor}{black}
 \newcommand{\@authorcolor}{black}
 
-\newcommand\OEauthor[1]{{\raggedright\sffamily\bfseries\scshape\large \boldmath\color{authorcolor}#1\vskip1ex\par}}
-\newcommand\OEaddress[1]{{\raggedright\small\itshape #1\par}}
+\newcommand\OEauthor[1]{{\raggedright\sffamily\bfseries\boldmath\color{authorcolor}#1}\par}
+\newcommand\OEaddress[1]{\vskip-6pt{\raggedright\smaller #1}\par}
 \newcommand\authormark[1]{\textsuperscript{#1}} %% author superscripts
-\newcommand\OEemail[1]{{\raggedright\footnotesize\itshape\color{urlblue}#1\par}}
+\newcommand\OEemail[1]{\vskip-6pt{\raggedright\footnotesize\color{urlblue}#1\par}}
 \newcommand\URL[1]{\textcolor{urlblue}{\underline{#1}}}
-\newcommand\homepage[1]{{\raggedright\footnotesize\itshape\color{urlblue}#1\par}}
+\newcommand\homepage[1]{\vskip-6pt{\raggedright\footnotesize\color{urlblue}#1\par}}
 
 \let\title\OEtitle
 \let\author\OEauthor
