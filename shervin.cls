@@ -39,12 +39,11 @@
 
 %% FONT, TEXT PACKAGES
 \usepackage[table]{xcolor}
-\usepackage{silence}
-\WarningFilter{microtype}{Font}
+% \usepackage{silence}
+% \WarningFilter{microtype}{Font}
 \usepackage[T1]{fontenc}
-% \usepackage{newtxtext,newtxmath}
-\usepackage{courier}                % \texttt{} - latex typewriter set to Courier
-\usepackage{helvet}                 % latex sans serif set to Helvetica
+% \usepackage{courier}                % \texttt{} - latex typewriter set to Courier
+% \usepackage{helvet}                 % latex sans serif set to Helvetica
 \usepackage{mathpazo}               % latex roman set to Palatino and mathpazo math
 
 
@@ -83,11 +82,11 @@
 \parindent1em %% em tied to font
 \parskip0pc
 
-\newcommand{\headerfont}{\normalfont\sffamily\fontsize{7}{9}\selectfont}
+\newcommand{\headerfont}{\normalfont\fontsize{7}{9}\selectfont}
 
 
 % Title (headings are now sans serif; left-aligned)
-\newcommand\OEtitle[1]{{\fontsize{16pt}{18.5pt}\sffamily\bfseries\selectfont\raggedright{#1}}\par}
+\newcommand\OEtitle[1]{{\fontsize{16pt}{18.5pt}\bfseries\selectfont\raggedright{#1}}\par}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -99,7 +98,7 @@
 \colorlet{authorcolor}{black}
 \newcommand{\@authorcolor}{black}
 
-\newcommand\OEauthor[1]{{\raggedright\sffamily\bfseries\boldmath\color{authorcolor}#1}\par}
+\newcommand\OEauthor[1]{{\raggedright\bfseries\boldmath\color{authorcolor}#1}\par}
 \newcommand\OEaddress[1]{\vskip-6pt{\raggedright\smaller #1}\par}
 \newcommand\authormark[1]{\textsuperscript{#1}} %% author superscripts
 \newcommand\OEemail[1]{\vskip-6pt{\raggedright\footnotesize\color{urlblue}#1\par}}
@@ -124,9 +123,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Abstract environments, with and without copyright info
-\renewenvironment{abstract}{\vskip1pc\noindent\textbf{Abstract:\space}}{\\[12pt]\noindent{\fontsize{8pt}{9pt}\sffamily\copyright\, \number\year \hskip.05in\@copyrighttext}\par\vskip12pt}
+\renewenvironment{abstract}{\vskip1pc\noindent\textbf{Abstract:\space}}{\\[12pt]\noindent{\fontsize{8pt}{9pt}\copyright\, \number\year \hskip.05in\@copyrighttext}\par\vskip12pt}
 
-\newenvironment{abstract*}{\vskip1pc\noindent\textbf{\textsf{Abstract:}\space}}{}
+\newenvironment{abstract*}{\vskip1pc\noindent\textbf{{Abstract:}\space}}{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -170,20 +169,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Authors may now use \cite \ref for section numbers
-\renewcommand\@seccntformat[1]{\csname the#1\endcsname.\quad }
+\renewcommand\@seccntformat[1]{\csname the#1\endcsname\quad }
 \renewcommand\thesubsection{\thesection.\arabic{subsection}}
 \renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
-%% Section headings are now sans serif
+
+% Section headings take less room than normal.
 \renewcommand\section{\@startsection {section}{1}{0pt}
                                      {-2.5ex plus -1ex minus -.2ex}%
                                      {1.3ex plus .2ex}%
-                                     {\normalsize\bfseries\sffamily}}
+                                     {\large\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
                                      {-2.25ex plus -1ex minus -.2ex}%
                                      {1ex plus .2ex}%
-                                     {\normalsize\itshape\sffamily}}
+                                     {\normalsize\bfseries}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
                                      {-2.25ex plus -1ex minus -.2ex}%
                                      {1ex plus .2ex}%
-                                     {\small\upshape\sffamily}}
+                                     {\normalsize\bfseries}}
 
