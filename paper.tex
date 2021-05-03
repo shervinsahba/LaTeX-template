@@ -1,28 +1,29 @@
 % LaTeX template by Shervin Sahba
 % shervin@tuta.io
-
+%
 % CONTENTS:
 % [[0]] DOCUMENT BEGINS
 % [[1]] BODY
 % [[2]] REFERENCES
-% [[3]] APPENDICES
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass{shervin} % load .cls
 \usepackage{shervin}  	% load .sty
 
-\autoleftright  % automate ( ) -> \left( \right)
-    % note: manually override by using \left \right \bigl etc...
+\usepackage[backend=biber]{biblatex}
+\addbibresource{refs.bib}
 
-% \toggletrue{reference_section}  % print references
-\setheadertopleft{Notes}			% header control, top left
-\setheadertopright{\today}			% header control, top right
+\autoleftright  % automatic ( ) -> \left( \right)
+    % note: override by using \left \right \bigl etc...
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[0]] DOCUMENT BEGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setheadertopleft{Notes}    % header, top left
+\setheadertopright{\today}  % header, top right
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[0]] DOCUMENT BEGINS
+
 \begin{document}
 
 \title{Untitled Document - \today}
@@ -35,16 +36,16 @@
 This describes the paper. \footnote{Footnote!}
 \end{abstract*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[1]] BODY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[1]] BODY
+
 
 \section{Section} \label{sec: }
 
-Words be written yonder.
+Words be written yonder.\cite{DUMMYEXAMPLE}
 
-
+%% FIGURE
 % \begin{figure}[H] \centering
 % \captionsetup{width=0.9\columnwidth}
 %	\subfloat[label]{
@@ -58,25 +59,12 @@ Words be written yonder.
 % \end{figure}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[2]] REFERENCES - use \citep and \citet with natbib, not \cite %%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\iftoggle{reference_section}{
-	\bigskip
-	\bibliographystyle{abbrvnat}
-	\bibliography{references} \label{sec: References}
-}{}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[3]] APPENDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \clearpage
-% \section{Appendix A} \label{sec:AppendixA}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[2]] REFERENCES
+
+\printbibliography \label{sec: References}
 \end{document}

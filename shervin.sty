@@ -1,6 +1,6 @@
 % LaTeX style sheet by Shervin Sahba
 % shervin@tuta.io
-
+%
 % CONTENTS:
 % [[1]] ENVIRONMENTS
 % [[2]] PACKAGES - FONT & FIGURES
@@ -12,10 +12,9 @@
 % [[M]] MACROS
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[1]] ENVIRONMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[1]] ENVIRONMENTS
 
 % boxer - draws a box around whatever you put in it
 \newenvironment{boxer}
@@ -26,10 +25,9 @@
 \newenvironment{subalign}{\subequations\align}{\endalign\endsubequations}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[2]] PACKAGES - FONT & FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[2]] PACKAGES - FONT & FIGURES
 
 \@ifpackageloaded{xcolor}{}{\usepackage[table]{xcolor}}
 \usepackage{verbatim}  % \begin{comment} %\begin{verbatim}
@@ -52,10 +50,9 @@
 \usepackage{parskip}  % disables paragraph indent. adds a space between newlined spaced paragraphs
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[3]] PACKAGES - CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[3]] PACKAGES - CODE
 
 \usepackage{etoolbox}  % for better ifthen conditions with
                        % \newtoggle{flag} <-- declares flag, sets false
@@ -151,10 +148,9 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[4]] PACKAGES - SCIENTIFIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[4]] PACKAGES - SCIENTIFIC
 
 \usepackage{amsmath}
 \allowdisplaybreaks     % allow page breaks with align env
@@ -171,10 +167,10 @@
                       % e.g. M\indices{^a_b^{cd}}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[5]] AUTOMATIC PARENTHESIS & BRACKETS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[5]] AUTOMATIC PARENTHESIS & BRACKETS
+
 % activate with \toggleautobrackets at beginning of .tex
 
 % inspired by: https://tex.stackexchange.com/questions/31526/macro-for-left-and-right/58641
@@ -188,10 +184,9 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[7]] TCOLORBOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[7]] TCOLORBOX
 
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
@@ -217,10 +212,10 @@
   title={#2},#1}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% [[8]] HYPERREF LINKS & TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% [[8]] HYPERREF LINKS & TOC
+
 
 %% LINKS AND BOOKMARKS VIA HYPERREF
 % Most packages should load before hyperref but there are exceptions
@@ -246,20 +241,20 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% [[M]] MACROS \def will clobber commands, \newcommand will not! %%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% [[M]] MACROS
+
+% \def clobbers commands, \newcommand doesn't not!
 
 %% GREEK SYMBOLS
-\newcommand{\eps}{\epsilon}                 % \epsilon
-
+\newcommand{\eps}{\epsilon}
 
 %% MATH SYMBOLS
-\newcommand{\mbf}[1]{\mathbf{#1}}           % \mathbf{}
-\newcommand{\mbb}[1]{\mathbb{#1}}           % \mathbb{}
-\newcommand{\mc}[1]{\mathcal{#1}}           % \mathcal{}
-\newcommand{\idx}{\indices}                 % \indices{}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\idx}{\indices}
 
 % differential d with pretty typesetting
 \renewcommand\d{\mathop{}\!\mathrm{d}}
@@ -271,17 +266,17 @@
 \newcommand\dt{\mathop{}\!\mathrm{d}t}
 \newcommand\du{\mathop{}\!\mathrm{d}u}
 
-\def\R{\mathbb{R}}                          % reals
-\def\C{\mathbb{C}}                          % complex numbers
-\def\Z{\mathbb{Z}}                          % integers
-\def\N{\mathbb{N}_{\ge0}}                   % natural integers
-\def\Nplus{\mathbb{N}_{>0}}                 % natural integers, not zero
+\def\R{\mathbb{R}}            % reals
+\def\C{\mathbb{C}}            % complex numbers
+\def\Z{\mathbb{Z}}            % integers
+\def\N{\mathbb{N}_{\ge0}}     % natural integers
+\def\Nplus{\mathbb{N}_{>0}}   % natural > zero
 
-\def\E{\mathbb{E}}                          % expectation
-\def\P{\mathbb{P}}                          % probability
-\def\PV{\mathcal{P}}                        % principal value
-\def\FT{\mathcal{F}}                        % Fourier transform
-\def\iFT{\mathcal{F}^{-1}}                  % inverse Fourier transform
+\def\E{\mathbb{E}}            % expectation
+\def\P{\mathbb{P}}            % probability
+\def\PV{\mathcal{P}}          % principal value
+\def\FT{\mathcal{F}}          % Fourier transform
+\def\iFT{\mathcal{F}^{-1}}    % inverse Fourier
 
 \renewcommand{\vec}[1]{\boldsymbol{#1}}     % vector, as bold symbol
 \newcommand{\mat}[1]{\boldsymbol{#1}}       % matrix, as bold symbol
@@ -309,10 +304,10 @@
 \DeclareMathOperator{\prox}{prox}           % prox
 \DeclareMathOperator{\epi}{epi}             % epi
 \DeclareMathOperator{\proj}{proj}           % projection
-\DeclareMathOperator{\am}{am}               % Jacobi Elliptic Am
-\DeclareMathOperator{\dn}{dn}               % Jacobi Elliptic Dn
-\DeclareMathOperator{\cn}{cn}               % Jacobi Elliptic Cn
-\DeclareMathOperator{\sn}{sn}               % Jacobi Elliptic Sn
+\DeclareMathOperator{\am}{am}  % Jacobi Elliptic Am
+\DeclareMathOperator{\dn}{dn}  % Jacobi Elliptic Dn
+\DeclareMathOperator{\cn}{cn}  % Jacobi Elliptic Cn
+\DeclareMathOperator{\sn}{sn}  % Jacobi Elliptic Sn
 
 \@ifundefined{autoleftright}
   {%
